@@ -672,6 +672,7 @@
             <div class="dropdown-content">
                 <a href="#overview">Company Overview</a>
                 <a href="#google-finance-section">Google Finance Hub</a>
+                <a href="#news-feed-section">Live Market News</a>
                 <a href="#calculator">Funding Calculator</a>
             </div>
         </div>
@@ -843,6 +844,16 @@
             </div>
         </div>
 
+        <!-- LIVE GOOGLE NEWS FEED SECTION -->
+        <div class="section" id="news-feed-section">
+            <h2>Live Financial & Market News</h2>
+            <div class="content-block">
+                <div id="google-news-container" style="display: flex; flex-direction: column; gap: 15px;">
+                    <p style="font-size: 0.9rem; color: #666;">Fetching latest market updates...</p>
+                </div>
+            </div>
+        </div>
+
         <!-- Funding Calculator -->
         <div class="section" id="calculator">
             <h2>Interactive Funding Calculator</h2>
@@ -957,6 +968,38 @@ function sendMessage(){
     input.value = "";
 }
 
+function loadGoogleNewsFeed() {
+    const rssUrl = encodeURIComponent('https://news.google.com/rss/search?q=finance+stocks+crypto+economy&hl=en-US&gl=US&ceid=US:en');
+    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`;
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('google-news-container');
+            if (!container) return;
+            
+            if (data && data.items) {
+                container.innerHTML = '';
+                data.items.slice(0, 4).forEach(item => {
+                    const pubDate = new Date(item.pubDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                    const newsCard = document.createElement('div');
+                    newsCard.style.cssText = "padding: 12px; background: #fdfdfd; border-left: 3px solid #bb0000; border: 1px solid #ddd;";
+                    newsCard.innerHTML = `
+                        <div style="font-size: 0.75rem; font-weight: bold; color: #666; margin-bottom: 4px;">GOOGLE NEWS • ${pubDate}</div>
+                        <a href="${item.link}" target="_blank" style="font-size: 0.95rem; font-weight: 900; color: #141414; text-decoration: none; display: block; margin-bottom: 6px;">${item.title}</a>
+                        <span style="font-size: 0.8rem; color: #444;">Source: ${item.author || 'Google News RSS'}</span>
+                    `;
+                    container.appendChild(newsCard);
+                });
+            }
+        })
+        .catch(error => {
+            console.error("Error loading news feed:", error);
+            const container = document.getElementById('google-news-container');
+            if(container) container.innerHTML = '<p style="font-size: 0.85rem; color: #bb0000;">Unable to load live news feed at this moment.</p>';
+        });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
         const splash = document.getElementById("splash-screen");
@@ -966,6 +1009,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         runCalculationEngine();
     }, 2000);
+    loadGoogleNewsFeed();
 });
 </script>
 </body>
