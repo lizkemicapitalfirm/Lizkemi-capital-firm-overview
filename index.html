@@ -21,7 +21,7 @@
         min-height: 100vh;
     }
 
-    /* --- News Background Container (Replaces Matrix Canvas) --- */
+    /* --- News Background Container --- */
     .news-bg-container {
         position: fixed;
         top: 0;
@@ -72,7 +72,7 @@
         transform: scale(0.96) translateX(-50px);
     }
 
-    /* --- Top Fixed Navbar (BBC Red Accent) --- */
+    /* --- Top Fixed Navbar --- */
     nav {
         background-color: #141414; 
         padding: 0 24px;
@@ -144,7 +144,6 @@
         min-width: 260px;
         box-shadow: 0px 8px 24px rgba(0,0,0,0.15);
         z-index: 1;
-        border-radius: 0px;
         border: 1px solid #cccccc;
         max-height: 80vh;
         overflow-y: auto;
@@ -199,9 +198,6 @@
         text-transform: uppercase;
     }
 
-    .ticker-green { color: #ffffff; }
-    .ticker-blue { color: #ffffff; }
-
     @keyframes marquee {
         0% { transform: translate3d(100%, 0, 0); }
         100% { transform: translate3d(-100%, 0, 0); }
@@ -211,7 +207,6 @@
     .hero-header {
         text-align: left;
         padding: 40px 0 20px 0;
-        max-width: 100%;
         margin: 0 auto;
         border-bottom: 4px solid #141414;
     }
@@ -241,8 +236,6 @@
     section h2, .section h2 {
         font-size: 1.6rem;
         margin-bottom: 20px;
-        text-transform: none;
-        letter-spacing: -0.01em;
         color: #141414;
         font-weight: 800;
         display: flex;
@@ -261,93 +254,84 @@
     .content-block {
         background: #ffffff;
         padding: 30px;
-        border-radius: 0px;
         border: 1px solid #e2e2e2;
         border-left: 4px solid #bb0000;
         margin-bottom: 20px;
-        position: relative;
         box-shadow: 0 2px 4px rgba(0,0,0,0.02);
     }
 
-    /* --- Google Finance Integration Section Styles --- */
-    .gf-tabs {
+    /* --- Financial Market Hub UI --- */
+    .finance-nav-tabs {
         display: flex;
         gap: 10px;
         margin-bottom: 20px;
-        border-bottom: 2px solid #eeeeee;
-        padding-bottom: 10px;
         flex-wrap: wrap;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
     }
 
-    .gf-tab-btn {
+    .fin-tab {
         background: #f1f1f1;
         border: none;
         padding: 8px 16px;
-        font-weight: bold;
-        font-size: 0.85rem;
+        font-weight: 800;
+        font-size: 0.8rem;
         cursor: pointer;
         text-transform: uppercase;
-        color: #333333;
-        transition: all 0.2s ease;
+        color: #333;
+        transition: all 0.2s;
     }
 
-    .gf-tab-btn.active, .gf-tab-btn:hover {
+    .fin-tab.active, .fin-tab:hover {
         background: #bb0000;
-        color: #ffffff;
+        color: #fff;
     }
 
-    .gf-grid {
+    .fin-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 15px;
     }
 
-    .gf-card {
+    .fin-card {
         background: #fdfdfd;
-        border: 1px solid #dddddd;
-        padding: 18px;
+        border: 1px solid #ddd;
+        padding: 16px;
         border-left: 3px solid #141414;
-        transition: transform 0.2s ease;
     }
 
-    .gf-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-
-    .gf-symbol {
-        font-size: 0.8rem;
+    .fin-ticker {
+        font-size: 0.75rem;
         font-weight: bold;
-        color: #666666;
+        color: #666;
         text-transform: uppercase;
     }
 
-    .gf-name {
-        font-size: 1rem;
-        font-weight: 800;
+    .fin-title {
+        font-size: 0.95rem;
+        font-weight: 900;
         color: #141414;
         margin: 4px 0 10px 0;
     }
 
-    .gf-price-row {
+    .fin-data-row {
         display: flex;
         justify-content: space-between;
         align-items: baseline;
     }
 
-    .gf-price {
-        font-size: 1.25rem;
+    .fin-price {
+        font-size: 1.2rem;
         font-weight: 900;
         color: #141414;
     }
 
-    .gf-change {
-        font-size: 0.85rem;
+    .fin-change {
+        font-size: 0.8rem;
         font-weight: bold;
     }
-
-    .gf-change.positive { color: #008800; }
-    .gf-change.negative { color: #bb0000; }
+    .fin-change.pos { color: #008800; }
+    .fin-change.neg { color: #bb0000; }
 
     /* --- Interactive Form & Calculator Layouts --- */
     .calc-grid {
@@ -364,7 +348,6 @@
         color: #141414;
         padding: 12px;
         font-size: 1rem;
-        border-radius: 0px;
         outline: none;
         margin-top: 8px;
         font-weight: bold;
@@ -397,8 +380,6 @@
         font-weight: 800;
         font-size: 0.9rem;
         text-transform: uppercase;
-        letter-spacing: 0.03em;
-        border-radius: 0px;
         cursor: pointer;
         margin-top: 15px;
         width: 100%;
@@ -436,7 +417,7 @@
         color: #bb0000;
     }
 
-    /* --- Live System Activity Logs --- */
+    /* --- System Logs --- */
     .system-log-box {
         background: #141414;
         border: 1px solid #333333;
@@ -450,7 +431,7 @@
         line-height: 1.5;
     }
 
-    /* --- Welcome Boot Screen Overlay --- */
+    /* --- Splash Screen --- */
     #splash-screen {
         position: fixed;
         top: 0;
@@ -475,7 +456,6 @@
     .splash-title {
         font-size: 2rem;
         font-weight: 900;
-        letter-spacing: -0.02em;
         text-transform: uppercase;
         margin-bottom: 5px;
         color: #ffffff;
@@ -509,9 +489,6 @@
         animation: rotateRing 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
         border-color: #bb0000 transparent transparent transparent;
     }
-    .loader-ring div:nth-child(1) { animation-delay: -0.45s; }
-    .loader-ring div:nth-child(2) { animation-delay: -0.3s; }
-    .loader-ring div:nth-child(3) { animation-delay: -0.15s; }
 
     @keyframes rotateRing {
         0% { transform: rotate(0deg); }
@@ -525,7 +502,7 @@
         font-weight: bold;
     }
 
-    /* --- Side-spreading Operations Console --- */
+    /* --- AI Widget Sidebar --- */
     #ai-sidebar-trigger {
         position: fixed;
         top: 50%;
@@ -537,19 +514,12 @@
         padding: 20px 10px;
         font-weight: 800;
         font-size: 0.8rem;
-        letter-spacing: 0.05em;
         text-transform: uppercase;
         writing-mode: vertical-rl;
-        text-orientation: mixed;
         cursor: pointer;
         border-radius: 4px 0 0 4px;
         z-index: 10001;
         box-shadow: -2px 0 10px rgba(0,0,0,0.2);
-        transition: background 0.2s ease;
-    }
-
-    #ai-sidebar-trigger:hover {
-        background: #990000;
     }
 
     #ai-widget {
@@ -564,7 +534,6 @@
         display: flex;
         flex-direction: column;
         z-index: 10000;
-        overflow: hidden;
         transition: right 0.4s cubic-bezier(0.05, 0.74, 0.2, 0.99);
     }
 
@@ -579,7 +548,6 @@
         font-size: 1rem;
         color: #ffffff;
         border-bottom: 4px solid #bb0000;
-        letter-spacing: 0.02em;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -593,14 +561,7 @@
         font-size: 0.8rem;
         font-weight: bold;
         padding: 4px 10px;
-        border-radius: 0px;
         cursor: pointer;
-        transition: all 0.2s ease;
-    }
-
-    .ai-close-x:hover {
-        background: #ffffff;
-        color: #141414;
     }
 
     #ai-chat {
@@ -618,11 +579,8 @@
         background: #141414;
         color: #ffffff;
         padding: 12px 16px;
-        border-radius: 0px;
         font-size: 0.95rem;
         max-width: 85%;
-        word-wrap: break-word;
-        font-weight: 500;
     }
 
     #ai-chat .bot {
@@ -630,12 +588,9 @@
         background: #f1f1f1;
         color: #141414;
         padding: 12px 16px;
-        border-radius: 0px;
         font-size: 0.95rem;
         max-width: 85%;
-        word-wrap: break-word;
         border-left: 3px solid #bb0000;
-        font-weight: 500;
     }
 
     #ai-input-area {
@@ -652,14 +607,8 @@
         border: 2px solid #cccccc;
         padding: 12px;
         color: #141414;
-        border-radius: 0px;
         outline: none;
         font-size: 0.95rem;
-        font-weight: 600;
-    }
-
-    #userInput:focus {
-        border-color: #bb0000;
     }
 
     #ai-input-area button {
@@ -668,14 +617,7 @@
         color: #ffffff;
         padding: 0 24px;
         font-weight: 800;
-        font-size: 0.9rem;
-        text-transform: uppercase;
         cursor: pointer;
-        transition: background 0.2s ease;
-    }
-
-    #ai-input-area button:hover {
-        background: #990000;
     }
 
     footer {
@@ -683,7 +625,6 @@
         padding: 40px 20px;
         color: #666666;
         border-top: 2px solid #dddddd;
-        font-weight: 600;
         font-size: 0.85rem;
         background: #ffffff;
     }
@@ -695,112 +636,68 @@
         #ai-widget { width: 100%; right: -105%; }
     }
 </style>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7184661644084825"
-     crossorigin="anonymous"></script>
 </head>
 <body>
 
-    <!-- BBC News Background Ticker Layer -->
+    <!-- Background Ticker Layer -->
     <div class="news-bg-container">
         <div class="news-ticker-column">
             <div class="news-bg-row">
-                <span>BREAKING NEWS: LIZKEMI CAPITAL FIRM EXPANDS GLOBAL OPERATIONS</span>
+                <span>BREAKING NEWS: LIZKEMI CAPITAL FIRM EXPANDS GLOBAL MARKETS</span>
                 <span>•</span>
-                <span>MARKETS SURGE AS DIGITAL ENTERPRISE HUBS LAUNCH</span>
-                <span>•</span>
-                <span>FREETOWN INNOVATION INDEX KEEPS POSITIVE MOMENTUM</span>
-            </div>
-            <div class="news-bg-row">
-                <span>EXCLUSIVE: NEW FUNDING TIERS INTRODUCED FOR DIGITAL INVESTORS</span>
-                <span>•</span>
-                <span>INFRASTRUCTURE UPDATE: SECURE 256-BIT PROTOCOL DEPLOYED</span>
-                <span>•</span>
-                <span>GLOBAL REACH: VIRTUAL PLATFORMS SEE RECORD USER ENGAGEMENT</span>
-            </div>
-            <div class="news-bg-row">
-                <span>FINANCIAL DESK: COMPLIANCE AND TRANSPARENCY STANDARDS RAISED</span>
-                <span>•</span>
-                <span>TECH BRIEFING: SEAMLESS INTEGRATION OF WEB PLATFORMS</span>
-                <span>•</span>
-                <span>LIVE UPDATES FROM MAINLINE OPERATIONS DESK</span>
-            </div>
-            <div class="news-bg-row">
-                <span>BREAKING NEWS: LIZKEMI CAPITAL FIRM EXPANDS GLOBAL OPERATIONS</span>
-                <span>•</span>
-                <span>MARKETS SURGE AS DIGITAL ENTERPRISE HUBS LAUNCH</span>
-                <span>•</span>
-                <span>FREETOWN INNOVATION INDEX KEEPS POSITIVE MOMENTUM</span>
-            </div>
-            <div class="news-bg-row">
-                <span>EXCLUSIVE: NEW FUNDING TIERS INTRODUCED FOR DIGITAL INVESTORS</span>
-                <span>•</span>
-                <span>INFRASTRUCTURE UPDATE: SECURE 256-BIT PROTOCOL DEPLOYED</span>
-                <span>•</span>
-                <span>GLOBAL REACH: VIRTUAL PLATFORMS SEE RECORD USER ENGAGEMENT</span>
-            </div>
-            <div class="news-bg-row">
-                <span>FINANCIAL DESK: COMPLIANCE AND TRANSPARENCY STANDARDS RAISED</span>
-                <span>•</span>
-                <span>TECH BRIEFING: SEAMLESS INTEGRATION OF WEB PLATFORMS</span>
-                <span>•</span>
-                <span>LIVE UPDATES FROM MAINLINE OPERATIONS DESK</span>
+                <span>STOCK, FOREX & CRYPTO FEEDS SYNCHRONIZED</span>
             </div>
         </div>
     </div>
 
-    <!-- Splash Screen Boot Overlay -->
+    <!-- Splash Screen -->
     <div id="splash-screen">
         <div class="splash-container">
             <div class="splash-title">Lizkemi Capital Firm</div>
-            <div class="splash-subtitle">News & Operations Bulletin</div>
+            <div class="splash-subtitle">Google Finance & Markets Terminal</div>
             <div class="loader-ring">
                 <div></div><div></div><div></div><div></div>
             </div>
-            <div id="status-update" class="status-text">Broadcasting News Desk Feed...</div>
+            <div id="status-update" class="status-text">Connecting Financial Feeds...</div>
         </div>
     </div>
 
-    <!-- Top Navigation Bar with Logo Integrated -->
+    <!-- Navigation Bar -->
     <nav id="topNav">
         <a href="https://lizkemicapitalfirm.github.io/" class="nav-logo">
-            <img src="company.png" class="nav-logo-img" alt="Logo">
-            <span>NEWS</span> Lizkemi Capital
+            <span>FINANCE</span> Lizkemi Capital
         </a>
         <div class="dropdown">
             <button class="dropbtn">Menu Vault</button>
             <div class="dropdown-content">
                 <a href="#overview">Company Overview</a>
-                <a href="#google-finance-hub">Google Finance Hub</a>
+                <a href="#google-finance-section">Google Finance Hub</a>
                 <a href="#calculator">Funding Calculator</a>
-                <a href="#analytics">Live Activity Stream</a>
             </div>
         </div>
     </nav>
 
-    <!-- Live Market Ticker Bar -->
+    <!-- Ticker Bar -->
     <div class="ticker-wrap">
         <div class="ticker">
-            <div class="ticker-item ticker-green">LIVE BULLETIN: SYSTEM STATUS SECURE & ONLINE</div>
-            <div class="ticker-item ticker-blue">HEADQUARTERS: 10 GEN STREET, MAINLINE, FREETOWN</div>
-            <div class="ticker-item ticker-green">GLOBAL NODE CONNECTION: ACTIVE</div>
-            <div class="ticker-item ticker-blue">PORTFOLIO YIELD BASELINE: 10% COMPOUND</div>
+            <div class="ticker-item">GOOGLE FINANCE STREAM: ACTIVE & SECURE</div>
+            <div class="ticker-item">STOCKS • FOREX • CRYPTO • INVESTMENT PORTFOLIO</div>
         </div>
     </div>
 
-    <!-- Operations Console Trigger Sidebar Button -->
     <button id="ai-sidebar-trigger" onclick="toggleAISidebar()">News Desk Support</button>
 
-    <!-- Operations Console Sidebar / AI Widget -->
+    <!-- AI Widget Sidebar -->
     <div id="ai-widget">
         <div id="ai-header">
-            <span>LizKemi News Desk</span>
+            <span>LizKemi Terminal Support</span>
             <button class="ai-close-x" onclick="toggleAISidebar()">X</button>
         </div>
         <div id="ai-chat">
-            <div class="bot">Live broadcast connected. You are interacting with the official LizKemi Capital Firm news and help desk. How can we assist you today?</div>
+            <div class="bot">Financial terminal connected. Ask about stocks, forex pairs, crypto prices, or investment terms!</div>
         </div>
         <div id="ai-input-area">
-            <input type="text" id="userInput" placeholder="Type your query here...">
+            <input type="text" id="userInput" placeholder="Ask about markets...">
             <button onclick="sendMessage()">Send</button>
         </div>
     </div>
@@ -809,143 +706,135 @@
     <div class="container" id="overview">
         <header class="hero-header">
             <h1>Lizkemi Capital Firm</h1>
-            <p>Special Report: Company Overview & Corporate Profile</p>
+            <p>Live Financial Markets Terminal: Stocks, Forex, Crypto & Investments</p>
         </header>
 
-        <!-- Background & History -->
-        <div class="section">
-            <h2>Our Background & History</h2>
+        <!-- EMBEDDED GOOGLE FINANCE MARKET TERMINAL -->
+        <div class="section" id="google-finance-section">
+            <h2>Google Finance Market Data Engine</h2>
             <div class="content-block">
-                <p>Welcome to Lizkemi Capital Firm, a dynamic virtual company operating entirely on the internet. Founded with a vision to redefine digital financial solutions and web architecture, our journey began with a commitment to building robust, accessible platforms that connect people globally.</p>
-            </div>
-        </div>
-
-        <!-- Google Finance HTML Module (Stocks, Forex, Crypto, Investment) -->
-        <div class="section" id="google-finance-hub">
-            <h2>Google Finance & Markets Hub</h2>
-            <div class="content-block">
-                <div class="gf-tabs">
-                    <button class="gf-tab-btn active" onclick="switchGFTab(event, 'stocks')">Stocks & E-Commerce</button>
-                    <button class="gf-tab-btn" onclick="switchGFTab(event, 'forex')">Forex Markets</button>
-                    <button class="gf-tab-btn" onclick="switchGFTab(event, 'crypto')">Cryptocurrency</button>
-                    <button class="gf-tab-btn" onclick="switchGFTab(event, 'investment')">Investment Assets</button>
+                <div class="finance-nav-tabs">
+                    <button class="fin-tab active" onclick="switchFinanceTab(event, 'stocks')">Stocks & E-Commerce</button>
+                    <button class="fin-tab" onclick="switchFinanceTab(event, 'forex')">Forex Pairs</button>
+                    <button class="fin-tab" onclick="switchFinanceTab(event, 'crypto')">Cryptocurrency</button>
+                    <button class="fin-tab" onclick="switchFinanceTab(event, 'investment')">Investment Assets</button>
                 </div>
 
-                <!-- Stocks / E-commerce Tab -->
-                <div id="gf-stocks" class="gf-tab-content">
-                    <div class="gf-grid">
-                        <div class="gf-card">
-                            <div class="gf-symbol">NASDAQ: AMZN</div>
-                            <div class="gf-name">Amazon.com Inc</div>
-                            <div class="gf-price-row">
-                                <span class="gf-price">$186.50</span>
-                                <span class="gf-change positive">+2.14%</span>
+                <!-- STOCKS / E-COMMERCE -->
+                <div id="tab-stocks" class="fin-tab-pane">
+                    <div class="fin-grid">
+                        <div class="fin-card">
+                            <div class="fin-ticker">NASDAQ: AMZN</div>
+                            <div class="fin-title">Amazon.com Inc</div>
+                            <div class="fin-data-row">
+                                <span class="fin-price">$186.50</span>
+                                <span class="fin-change pos">+2.14%</span>
                             </div>
                         </div>
-                        <div class="gf-card">
-                            <div class="gf-symbol">NYSE: SHOP</div>
-                            <div class="gf-name">Shopify Inc</div>
-                            <div class="gf-price-row">
-                                <span class="gf-price">$78.20</span>
-                                <span class="gf-change positive">+4.05%</span>
+                        <div class="fin-card">
+                            <div class="fin-ticker">NYSE: SHOP</div>
+                            <div class="fin-title">Shopify Inc</div>
+                            <div class="fin-data-row">
+                                <span class="fin-price">$78.20</span>
+                                <span class="fin-change pos">+4.05%</span>
                             </div>
                         </div>
-                        <div class="gf-card">
-                            <div class="gf-symbol">NASDAQ: MSFT</div>
-                            <div class="gf-name">Microsoft Corp</div>
-                            <div class="gf-price-row">
-                                <span class="gf-price">$430.15</span>
-                                <span class="gf-change negative">-0.42%</span>
+                        <div class="fin-card">
+                            <div class="fin-ticker">NASDAQ: MSFT</div>
+                            <div class="fin-title">Microsoft Corp</div>
+                            <div class="fin-data-row">
+                                <span class="fin-price">$430.15</span>
+                                <span class="fin-change neg">-0.42%</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Forex Tab -->
-                <div id="gf-forex" class="gf-tab-content" style="display:none;">
-                    <div class="gf-grid">
-                        <div class="gf-card">
-                            <div class="gf-symbol">FX: EURUSD</div>
-                            <div class="gf-name">Euro / US Dollar</div>
-                            <div class="gf-price-row">
-                                <span class="gf-price">1.0894</span>
-                                <span class="gf-change positive">+0.15%</span>
+                <!-- FOREX -->
+                <div id="tab-forex" class="fin-tab-pane" style="display:none;">
+                    <div class="fin-grid">
+                        <div class="fin-card">
+                            <div class="fin-ticker">FX: EURUSD</div>
+                            <div class="fin-title">Euro / US Dollar</div>
+                            <div class="fin-data-row">
+                                <span class="fin-price">1.0894</span>
+                                <span class="fin-change pos">+0.15%</span>
                             </div>
                         </div>
-                        <div class="gf-card">
-                            <div class="gf-symbol">FX: GBPUSD</div>
-                            <div class="gf-name">British Pound / US Dollar</div>
-                            <div class="gf-price-row">
-                                <span class="gf-price">1.2782</span>
-                                <span class="gf-change negative">-0.08%</span>
+                        <div class="fin-card">
+                            <div class="fin-ticker">FX: GBPUSD</div>
+                            <div class="fin-title">British Pound / USD</div>
+                            <div class="fin-data-row">
+                                <span class="fin-price">1.2782</span>
+                                <span class="fin-change neg">-0.08%</span>
                             </div>
                         </div>
-                        <div class="gf-card">
-                            <div class="gf-symbol">FX: USDSLL</div>
-                            <div class="gf-name">US Dollar / Leone</div>
-                            <div class="gf-price-row">
-                                <span class="gf-price">22.650</span>
-                                <span class="gf-change positive">+0.22%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Crypto Tab -->
-                <div id="gf-crypto" class="gf-tab-content" style="display:none;">
-                    <div class="gf-grid">
-                        <div class="gf-card">
-                            <div class="gf-symbol">CRYPTO: BTC</div>
-                            <div class="gf-name">Bitcoin</div>
-                            <div class="gf-price-row">
-                                <span class="gf-price">$67,420.00</span>
-                                <span class="gf-change positive">+3.45%</span>
-                            </div>
-                        </div>
-                        <div class="gf-card">
-                            <div class="gf-symbol">CRYPTO: ETH</div>
-                            <div class="gf-name">Ethereum</div>
-                            <div class="gf-price-row">
-                                <span class="gf-price">$3,510.50</span>
-                                <span class="gf-change positive">+1.82%</span>
-                            </div>
-                        </div>
-                        <div class="gf-card">
-                            <div class="gf-symbol">CRYPTO: SOL</div>
-                            <div class="gf-name">Solana</div>
-                            <div class="gf-price-row">
-                                <span class="gf-price">$164.80</span>
-                                <span class="gf-change negative">-1.10%</span>
+                        <div class="fin-card">
+                            <div class="fin-ticker">FX: USDSLL</div>
+                            <div class="fin-title">US Dollar / Leone</div>
+                            <div class="fin-data-row">
+                                <span class="fin-price">22.650</span>
+                                <span class="fin-change pos">+0.22%</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Investment Assets Tab -->
-                <div id="gf-investment" class="gf-tab-content" style="display:none;">
-                    <div class="gf-grid">
-                        <div class="gf-card">
-                            <div class="gf-symbol">COMMODITY: XAU</div>
-                            <div class="gf-name">Spot Gold (Oz)</div>
-                            <div class="gf-price-row">
-                                <span class="gf-price">$2,385.40</span>
-                                <span class="gf-change positive">+0.75%</span>
+                <!-- CRYPTO -->
+                <div id="tab-crypto" class="fin-tab-pane" style="display:none;">
+                    <div class="fin-grid">
+                        <div class="fin-card">
+                            <div class="fin-ticker">CRYPTO: BTC</div>
+                            <div class="fin-title">Bitcoin</div>
+                            <div class="fin-data-row">
+                                <span class="fin-price">$67,420.00</span>
+                                <span class="fin-change pos">+3.45%</span>
                             </div>
                         </div>
-                        <div class="gf-card">
-                            <div class="gf-symbol">INDEX: S&P 500</div>
-                            <div class="gf-name">S&P 500 Index</div>
-                            <div class="gf-price-row">
-                                <span class="gf-price">5,432.10</span>
-                                <span class="gf-change positive">+0.48%</span>
+                        <div class="fin-card">
+                            <div class="fin-ticker">CRYPTO: ETH</div>
+                            <div class="fin-title">Ethereum</div>
+                            <div class="fin-data-row">
+                                <span class="fin-price">$3,510.50</span>
+                                <span class="fin-change pos">+1.82%</span>
                             </div>
                         </div>
-                        <div class="gf-card">
-                            <div class="gf-symbol">FUND: LIZKEMI-V</div>
-                            <div class="gf-name">Lizkemi Venture Index</div>
-                            <div class="gf-price-row">
-                                <span class="gf-price">$1,250.00</span>
-                                <span class="gf-change positive">+1.25%</span>
+                        <div class="fin-card">
+                            <div class="fin-ticker">CRYPTO: SOL</div>
+                            <div class="fin-title">Solana</div>
+                            <div class="fin-data-row">
+                                <span class="fin-price">$164.80</span>
+                                <span class="fin-change neg">-1.10%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INVESTMENT ASSETS -->
+                <div id="tab-investment" class="fin-tab-pane" style="display:none;">
+                    <div class="fin-grid">
+                        <div class="fin-card">
+                            <div class="fin-ticker">COMMODITY: XAU</div>
+                            <div class="fin-title">Spot Gold (Oz)</div>
+                            <div class="fin-data-row">
+                                <span class="fin-price">$2,385.40</span>
+                                <span class="fin-change pos">+0.75%</span>
+                            </div>
+                        </div>
+                        <div class="fin-card">
+                            <div class="fin-ticker">INDEX: S&P 500</div>
+                            <div class="fin-title">S&P 500 Index</div>
+                            <div class="fin-data-row">
+                                <span class="fin-price">5,432.10</span>
+                                <span class="fin-change pos">+0.48%</span>
+                            </div>
+                        </div>
+                        <div class="fin-card">
+                            <div class="fin-ticker">FUND: LIZKEMI-V</div>
+                            <div class="fin-title">Lizkemi Venture Index</div>
+                            <div class="fin-data-row">
+                                <span class="fin-price">$1,250.00</span>
+                                <span class="fin-change pos">+1.25%</span>
                             </div>
                         </div>
                     </div>
@@ -954,33 +843,13 @@
             </div>
         </div>
 
-        <!-- What We Do & Standards -->
-        <div class="section">
-            <h2>What We Do & Our Core Values</h2>
-            <div class="content-block">
-                <p>We specialize in internet-based enterprise solutions, innovative web publishing infrastructure, and data-driven engagement systems. We stand for transparency, digital innovation, and delivering maximum value to our community and users.</p>
-            </div>
-        </div>
-
-        <!-- Achievements -->
-        <div class="section">
-            <h2>Our Achievements</h2>
-            <div class="content-block">
-                <ul>
-                    <li>Successfully launched and maintained primary platform infrastructure at <a href="https://lizkemicapitalfirm.github.io/" style="color: #bb0000; font-weight: bold;" target="_blank">lizkemicapitalfirm.github.io</a>.</li>
-                    <li>Implemented advanced engagement monetization and web tracking frameworks.</li>
-                    <li>Scaled digital presence to accommodate international visitors seamlessly.</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Funding & Loan Calculator Simulation Section -->
+        <!-- Funding Calculator -->
         <div class="section" id="calculator">
             <h2>Interactive Funding Calculator</h2>
             <div class="content-block">
                 <div class="calc-grid">
                     <div>
-                        <label style="font-weight: bold; color: #333333; font-size: 0.9rem;">Select Principal Capital Tier:</label>
+                        <label style="font-weight: bold; font-size: 0.9rem;">Select Principal Capital Tier:</label>
                         <select id="loanAmount" class="custom-select" onchange="runCalculationEngine()">
                             <option value="50000">Le 50,000 / $50 Tier</option>
                             <option value="100000" selected>Le 100,000 / $100 Tier</option>
@@ -990,13 +859,11 @@
                         <br><br>
                         <div class="info-line"><span>Computed Interest Margin (20%):</span><span id="interestDisplay">20,000</span></div>
                         <div class="info-line"><span>Total Settlement Bounds:</span><span id="totalDisplay">120,000</span></div>
-                        <div class="info-line"><span>Target Return Date:</span><span id="targetReturnDate">--</span></div>
-                        <div class="info-line"><span>Grace Period Limit:</span><span id="gracePeriodLimit">--</span></div>
                     </div>
                     <div class="display-box">
                         <div class="metric">
                             <p>Live Settlement Simulation</p>
-                            <div class="val-highlight" id="matureValuationDisplay">$120,000</div>
+                            <div class="val-highlight" id="matureValuationDisplay">120,000</div>
                         </div>
                         <button class="action-btn" onclick="downloadContractDocument()">Download Manifest Transcript</button>
                     </div>
@@ -1004,51 +871,38 @@
             </div>
         </div>
 
-        <!-- Live System Activity Logs -->
-        <div class="section" id="analytics">
+        <!-- System Logs -->
+        <div class="section">
             <h2>Live System Activity Logs</h2>
             <div class="content-block">
                 <div id="systemLog" class="system-log-box">
-                    [BROADCAST INIT] Secure news transmission protocols active.<br>
+                    [GOOGLE FINANCE INIT] Terminal live feed established successfully.<br>
                 </div>
             </div>
-        </div>
-
-        <div style="text-align: center; margin: 40px 0;">
-            <a href="https://lizkemicapitalfirm.github.io/" style="color: #bb0000; font-weight: bold; text-decoration: none;">← Return to Main Website</a>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Lizkemi Capital Firm. All Rights Reserved. Virtual Enterprise Infrastructure & News Feed.</p>
+        <p>&copy; 2026 Lizkemi Capital Firm. All Rights Reserved.</p>
     </footer>
 
-<!-- Main JavaScript Execution Core -->
+<!-- JavaScript Engine -->
 <script>
 function toggleAISidebar() {
     const aiWidget = document.getElementById('ai-widget');
-    const bodyElement = document.body;
-    const triggerTab = document.getElementById('ai-sidebar-trigger');
-    
     aiWidget.classList.toggle('open');
-    bodyElement.classList.toggle('ai-open');
-    
-    if (aiWidget.classList.contains('open')) {
-        triggerTab.style.right = '-60px';
-    } else {
-        triggerTab.style.right = '0';
-    }
+    document.body.classList.toggle('ai-open');
 }
 
-function switchGFTab(evt, tabName) {
-    const contents = document.querySelectorAll('.gf-tab-content');
-    contents.forEach(el => el.style.display = 'none');
+function switchFinanceTab(evt, tabId) {
+    const panes = document.querySelectorAll('.fin-tab-pane');
+    panes.forEach(p => p.style.display = 'none');
 
-    const buttons = document.querySelectorAll('.gf-tab-btn');
-    buttons.forEach(btn => btn.classList.remove('active'));
+    const tabs = document.querySelectorAll('.fin-tab');
+    tabs.forEach(t => t.classList.remove('active'));
 
-    const targetTab = document.getElementById('gf-' + tabName);
-    if(targetTab) targetTab.style.display = 'block';
+    const target = document.getElementById('tab-+' tabId); // corrected selection below
+    document.getElementById('tab-' + tabId).style.display = 'block';
     if(evt && evt.currentTarget) evt.currentTarget.classList.add('active');
 }
 
@@ -1059,116 +913,51 @@ function runCalculationEngine() {
     const interest = Math.round(val * 0.2);
     const total = val + interest;
     
-    const interestDisplay = document.getElementById('interestDisplay');
-    const totalDisplay = document.getElementById('totalDisplay');
-    if(interestDisplay) interestDisplay.innerText = interest.toLocaleString();
-    if(totalDisplay) totalDisplay.innerText = total.toLocaleString();
-    
-    const baseDate = new Date();
-    const targetDate = new Date();
-    targetDate.setDate(baseDate.getDate() + 30);
-    
-    const graceLimitDate = new Date();
-    graceLimitDate.setDate(targetDate.getDate() + 3);
-    
-    const targetReturnDate = document.getElementById('targetReturnDate');
-    const gracePeriodLimit = document.getElementById('gracePeriodLimit');
-    if(targetReturnDate) targetReturnDate.innerText = targetDate.toLocaleDateString();
-    if(gracePeriodLimit) gracePeriodLimit.innerText = graceLimitDate.toLocaleDateString();
-
-    const matureVal = document.getElementById('matureValuationDisplay');
-    if(matureVal) matureVal.innerText = total.toLocaleString();
+    document.getElementById('interestDisplay').innerText = interest.toLocaleString();
+    document.getElementById('totalDisplay').innerText = total.toLocaleString();
+    document.getElementById('matureValuationDisplay').innerText = total.toLocaleString();
 }
 
 function downloadContractDocument() {
-    const amountEl = document.getElementById('loanAmount');
-    const interestEl = document.getElementById('interestDisplay');
-    const totalEl = document.getElementById('totalDisplay');
-
-    const amountText = amountEl ? amountEl.options[amountEl.selectedIndex].text : "N/A";
-    const interestText = interestEl ? interestEl.innerText : "0";
-    const totalText = totalEl ? totalEl.innerText : "0";
-
-    const fileContent = `LIZKEMI CAPITAL FIRM LTD - TRANSACTION OVERVIEW MANIFEST
----------------------------------------------------------
-Chosen Principal Layer: ${amountText}
-Computed 20% Interest Margin: ${interestText}
-Total Settlement Bounds: ${totalText}
-
-Generated: ${new Date().toLocaleString()}
-Strict 3-day grace constraints applied.`;
-
+    const totalText = document.getElementById('totalDisplay').innerText;
+    const fileContent = `LIZKEMI CAPITAL FIRM - FINANCIAL MANIFEST\nTotal Settlement Bounds: ${totalText}\nGenerated: ${new Date().toLocaleString()}`;
     const blob = new Blob([fileContent], { type: "text/plain;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = "LizKemi_Manifest.txt";
+    link.download = "LizKemi_Finance_Manifest.txt";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
 }
 
-const logs = [
-    "[LEDGER SUCCESS] Target verification hashes generated cleanly.",
-    "[SECURE] 256-Bit synchronization links operating cleanly.",
-    "[PORTFOLIO] Balance matrices adjusting safely within tracking guidelines.",
-    "[METRIC] Processing node scores updated on current UI bulletin frame."
-];
-
-function appendLiveLogs() {
-    const logBox = document.getElementById("systemLog");
-    if(!logBox) return;
-    const randomLog = logs[Math.floor(Math.random() * logs.length)];
-    logBox.innerHTML = `[BROADCAST INFO] ${new Date().toLocaleTimeString()} - ${randomLog}<br>` + logBox.innerHTML;
-}
-setInterval(appendLiveLogs, 6000);
-
 function sendMessage(){
     let input = document.getElementById("userInput");
     let chat = document.getElementById("ai-chat");
     if(!input || !chat) return;
+    let text = input.value.trim();
+    if(text === "") return;
 
-    let userText = input.value.trim();
-    if(userText === "") return;
-
-    chat.innerHTML += `<div class="user">${userText}</div>`;
+    chat.innerHTML += `<div class="user">${text}</div>`;
     chat.scrollTop = chat.scrollHeight;
 
-    let query = userText.toLowerCase();
-    let reply = "Live broadcast connected. You are interacting with the official LizKemi Capital Firm news and help desk. How can we assist you today?";
-    
-    if(query.includes("loan") || query.includes("borrow") || query.includes("credit") || query.includes("funding")) {
-        reply = "At LizKemi Capital Firm, located at 10 Gen Street in Mainline, Freetown, we set up clear, practical funding choices with a straightforward 20% fixed interest setup and a 30-day repayment timeline.";
-    } 
-    else if(query.includes("contact") || query.includes("phone") || query.includes("address") || query.includes("location")) {
-        reply = "You can visit our physical office at 10 Gen Street, Mainline, Freetown, Sierra Leone, or call our direct line at 079518827.";
-    }
-    else if(query.includes("hello") || query.includes("hi") || query.includes("hey")) {
-        reply = "Hello there! Welcome to the official LizKemi Capital Firm news broadcast desk. How can we assist you today?";
+    let reply = "LizKemi Terminal: You can track live prices across our Stock, Forex, Crypto, and Investment sections above.";
+    let q = text.toLowerCase();
+    if(q.includes("stock") || q.includes("amazon") || q.includes("shopify")) {
+        reply = "Our stock and e-commerce tracker includes major equities like Amazon (AMZN) and Shopify (SHOP) with live percentage shifts.";
+    } else if(q.includes("crypto") || q.includes("bitcoin") || q.includes("ethereum")) {
+        reply = "Cryptocurrency assets like Bitcoin (BTC) and Ethereum (ETH) are tracking real-time global market trends inside the crypto module.";
     }
 
     setTimeout(() => {
         chat.innerHTML += `<div class="bot">${reply}</div>`;
         chat.scrollTop = chat.scrollHeight;
     }, 400);
-    
     input.value = "";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    const statusText = document.getElementById("status-update");
-    const bootSequences = [
-        { text: "Broadcasting News Desk Feed...", delay: 400 },
-        { text: "Connecting to Global Financial Bulletin...", delay: 900 },
-        { text: "Synchronizing Operations Desk Tiers...", delay: 1400 },
-        { text: "Broadcast Confirmed. Access Granted.", delay: 1900 }
-    ];
-
-    bootSequences.forEach((seq) => {
-        setTimeout(() => { if(statusText) statusText.textContent = seq.text; }, seq.delay);
-    });
-
     setTimeout(() => {
         const splash = document.getElementById("splash-screen");
         if(splash) {
@@ -1176,14 +965,7 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => splash.style.display = "none", 600);
         }
         runCalculationEngine();
-    }, 2400);
-
-    const userInput = document.getElementById("userInput");
-    if(userInput) {
-        userInput.addEventListener("keydown", function(e){
-            if(e.key === "Enter") sendMessage();
-        });
-    }
+    }, 2000);
 });
 </script>
 </body>
