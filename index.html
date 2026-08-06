@@ -5,637 +5,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lizkemi Capital Firm - Overview & Operations</title>
     <style>
-    /* --- Reset & Global News Theme --- */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, Helvetica, sans-serif;
-    }
-
-    body {
-        background: #f8f8f8; 
-        color: #141414;
-        overflow-x: hidden;
-        line-height: 1.6;
-        min-height: 100vh;
-    }
-
-    /* --- News Background Container --- */
-    .news-bg-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        z-index: -1;
-        background: #ffffff;
-        overflow: hidden;
-        opacity: 0.12;
-        pointer-events: none;
-    }
-
-    .news-ticker-column {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        position: absolute;
-        width: 100%;
-        animation: verticalScroll 40s linear infinite;
-    }
-
-    .news-bg-row {
-        display: flex;
-        gap: 40px;
-        white-space: nowrap;
-        font-size: 0.85rem;
-        font-weight: bold;
-        color: #bb0000;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-    }
-
-    @keyframes verticalScroll {
-        0% { transform: translateY(0); }
-        100% { transform: translateY(-50%); }
-    }
-
-    .container {
-        max-width: 1200px;
-        margin: auto;
-        padding: 20px;
-        margin-top: 130px;
-        transition: transform 0.4s cubic-bezier(0.05, 0.74, 0.2, 0.99);
-    }
-
-    body.ai-open .container {
-        transform: scale(0.96) translateX(-50px);
-    }
-
-    /* --- Top Fixed Navbar --- */
-    nav {
-        background-color: #141414; 
-        padding: 0 24px;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 1000;
-        border-bottom: 4px solid #bb0000;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 65px;
-    }
-
-    .nav-logo {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        font-weight: 900;
-        letter-spacing: -0.03em;
-        font-size: 1.4rem;
-        color: #ffffff;
-        text-decoration: none;
-    }
-
-    .nav-logo-img {
-        height: 32px;
-        width: auto;
-        border-radius: 2px;
-        object-fit: contain;
-    }
-
-    .nav-logo span {
-        background: #bb0000;
-        color: #ffffff;
-        padding: 2px 8px;
-        border-radius: 2px;
-    }
-
-    .dropdown {
-        position: relative;
-        display: inline-block;
-    }
-
-    .dropbtn {
-        background-color: transparent;
-        color: #ffffff;
-        border: 2px solid #ffffff;
-        padding: 8px 16px;
-        font-size: 0.85rem;
-        border-radius: 0px;
-        cursor: pointer;
-        font-weight: bold;
-        text-transform: uppercase;
-        transition: all 0.2s ease;
-    }
-
-    .dropbtn:hover {
-        background-color: #ffffff;
-        color: #141414;
-    }
-
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        right: 0;
-        background-color: #ffffff;
-        min-width: 260px;
-        box-shadow: 0px 8px 24px rgba(0,0,0,0.15);
-        z-index: 1;
-        border: 1px solid #cccccc;
-        max-height: 80vh;
-        overflow-y: auto;
-    }
-
-    .dropdown-content a {
-        color: #333333;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-        font-size: 0.9rem;
-        font-weight: 600;
-        cursor: pointer;
-        border-bottom: 1px solid #eeeeee;
-    }
-
-    .dropdown-content a:hover {
-        background-color: #bb0000;
-        color: #ffffff;
-    }
-
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
-
-    /* --- Live Running Market Ticker Bar --- */
-    .ticker-wrap {
-        position: fixed;
-        top: 65px;
-        left: 0;
-        width: 100%;
-        background: #bb0000;
-        color: #ffffff;
-        z-index: 999;
-        overflow: hidden;
-        padding: 10px 0;
-        box-shadow: inset 0 3px 0 rgba(0,0,0,0.1);
-    }
-
-    .ticker {
-        display: flex;
-        white-space: nowrap;
-        animation: marquee 35s linear infinite;
-        gap: 60px;
-    }
-
-    .ticker-item {
-        display: inline-block;
-        font-size: 0.8rem;
-        font-weight: bold;
-        letter-spacing: 0.03em;
-        text-transform: uppercase;
-    }
-
-    @keyframes marquee {
-        0% { transform: translate3d(100%, 0, 0); }
-        100% { transform: translate3d(-100%, 0, 0); }
-    }
-
-    /* --- Hero Header Layout --- */
-    .hero-header {
-        text-align: left;
-        padding: 40px 0 20px 0;
-        margin: 0 auto;
-        border-bottom: 4px solid #141414;
-    }
-
-    .hero-header h1 {
-        font-size: 2.8rem;
-        margin-bottom: 10px;
-        font-weight: 900;
-        letter-spacing: -0.02em;
-        color: #141414;
-        line-height: 1.1;
-    }
-
-    .hero-header p {
-        font-size: 1.1rem;
-        color: #666666;
-        font-weight: 600;
-    }
-
-    /* --- Layout Structures --- */
-    section, .section {
-        padding: 30px 0;
-        border-bottom: 1px solid #dddddd;
-        scroll-margin-top: 140px;
-    }
-
-    section h2, .section h2 {
-        font-size: 1.6rem;
-        margin-bottom: 20px;
-        color: #141414;
-        font-weight: 800;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    section h2::before, .section h2::before {
-        content: '';
-        display: inline-block;
-        width: 8px;
-        height: 20px;
-        background: #bb0000;
-    }
-
-    .content-block {
-        background: #ffffff;
-        padding: 30px;
-        border: 1px solid #e2e2e2;
-        border-left: 4px solid #bb0000;
-        margin-bottom: 20px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-    }
-
-    /* --- Financial Market Hub UI --- */
-    .finance-nav-tabs {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 20px;
-        flex-wrap: wrap;
-        border-bottom: 2px solid #eee;
-        padding-bottom: 10px;
-    }
-
-    .fin-tab {
-        background: #f1f1f1;
-        border: none;
-        padding: 8px 16px;
-        font-weight: 800;
-        font-size: 0.8rem;
-        cursor: pointer;
-        text-transform: uppercase;
-        color: #333;
-        transition: all 0.2s;
-    }
-
-    .fin-tab.active, .fin-tab:hover {
-        background: #bb0000;
-        color: #fff;
-    }
-
-    .fin-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 15px;
-    }
-
-    .fin-card {
-        background: #fdfdfd;
-        border: 1px solid #ddd;
-        padding: 16px;
-        border-left: 3px solid #141414;
-    }
-
-    .fin-ticker {
-        font-size: 0.75rem;
-        font-weight: bold;
-        color: #666;
-        text-transform: uppercase;
-    }
-
-    .fin-title {
-        font-size: 0.95rem;
-        font-weight: 900;
-        color: #141414;
-        margin: 4px 0 10px 0;
-    }
-
-    .fin-data-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-    }
-
-    .fin-price {
-        font-size: 1.2rem;
-        font-weight: 900;
-        color: #141414;
-    }
-
-    .fin-change {
-        font-size: 0.8rem;
-        font-weight: bold;
-    }
-    .fin-change.pos { color: #008800; }
-    .fin-change.neg { color: #bb0000; }
-
-    /* --- Interactive Form & Calculator Layouts --- */
-    .calc-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-        margin-top: 20px;
-    }
-
-    .calc-box select, .custom-select {
-        width: 100%;
-        background-color: #ffffff;
-        border: 2px solid #cccccc;
-        color: #141414;
-        padding: 12px;
-        font-size: 1rem;
-        outline: none;
-        margin-top: 8px;
-        font-weight: bold;
-    }
-
-    .calc-box select:focus, .custom-select:focus {
-        border-color: #bb0000;
-    }
-
-    .info-line {
-        display: flex;
-        justify-content: space-between;
-        padding: 12px 0;
-        border-bottom: 1px solid #eeeeee;
-        font-size: 0.9rem;
-        color: #555555;
-        font-weight: 600;
-    }
-
-    .info-line span:last-child {
-        font-weight: bold;
-        color: #141414;
-    }
-
-    .action-btn, .submit-btn {
-        background: #bb0000;
-        border: none;
-        color: #ffffff;
-        padding: 14px 24px;
-        font-weight: 800;
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        cursor: pointer;
-        margin-top: 15px;
-        width: 100%;
-        transition: background 0.2s ease;
-    }
-
-    .action-btn:hover, .submit-btn:hover {
-        background: #990000;
-    }
-
-    .display-box {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        background: #f4f4f4;
-        padding: 25px;
-        border: 1px solid #dddddd;
-    }
-
-    .metric {
-        margin-bottom: 1.2rem;
-    }
-
-    .metric p {
-        font-size: 0.85rem;
-        font-weight: 700;
-        color: #666666;
-        text-transform: uppercase;
-        margin-bottom: 4px;
-    }
-
-    .val-highlight {
-        font-size: 2.2rem;
-        font-weight: 900;
-        color: #bb0000;
-    }
-
-    /* --- System Logs --- */
-    .system-log-box {
-        background: #141414;
-        border: 1px solid #333333;
-        padding: 15px;
-        font-family: monospace;
-        font-size: 0.8rem;
-        color: #00ff88;
-        height: 120px;
-        overflow-y: auto;
-        margin-top: 15px;
-        line-height: 1.5;
-    }
-
-    /* --- Splash Screen --- */
-    #splash-screen {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background: #141414;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        z-index: 999999;
-        transition: opacity 0.6s ease-out, visibility 0.6s;
-    }
-
-    .splash-container {
-        text-align: center;
-        max-width: 450px;
-        padding: 20px;
-    }
-
-    .splash-title {
-        font-size: 2rem;
-        font-weight: 900;
-        text-transform: uppercase;
-        margin-bottom: 5px;
-        color: #ffffff;
-    }
-
-    .splash-subtitle {
-        font-size: 0.85rem;
-        color: #bb0000;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        margin-bottom: 35px;
-        font-weight: 800;
-    }
-
-    .loader-ring {
-        position: relative;
-        width: 60px;
-        height: 60px;
-        margin: 0 auto 35px auto;
-    }
-
-    .loader-ring div {
-        box-sizing: border-box;
-        display: block;
-        position: absolute;
-        width: 48px;
-        height: 48px;
-        margin: 6px;
-        border: 3px solid #bb0000;
-        border-radius: 50%;
-        animation: rotateRing 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-        border-color: #bb0000 transparent transparent transparent;
-    }
-
-    @keyframes rotateRing {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-
-    .status-text {
-        font-size: 0.8rem;
-        color: #cccccc;
-        min-height: 24px;
-        font-weight: bold;
-    }
-
-    /* --- AI Widget Sidebar --- */
-    #ai-sidebar-trigger {
-        position: fixed;
-        top: 50%;
-        right: 0;
-        transform: translateY(-50%);
-        background: #bb0000;
-        color: #ffffff;
-        border: none;
-        padding: 20px 10px;
-        font-weight: 800;
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        writing-mode: vertical-rl;
-        cursor: pointer;
-        border-radius: 4px 0 0 4px;
-        z-index: 10001;
-        box-shadow: -2px 0 10px rgba(0,0,0,0.2);
-    }
-
-    #ai-widget {
-        position: fixed;
-        top: 0;
-        right: -55%; 
-        width: 45%;  
-        height: 100vh;
-        background: #ffffff;
-        border-left: 4px solid #bb0000;
-        box-shadow: -15px 0 40px rgba(0, 0, 0, 0.2);
-        display: flex;
-        flex-direction: column;
-        z-index: 10000;
-        transition: right 0.4s cubic-bezier(0.05, 0.74, 0.2, 0.99);
-    }
-
-    #ai-widget.open {
-        right: 0;
-    }
-
-    #ai-header {
-        background: #141414;
-        padding: 20px;
-        font-weight: 900;
-        font-size: 1rem;
-        color: #ffffff;
-        border-bottom: 4px solid #bb0000;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        text-transform: uppercase;
-    }
-
-    .ai-close-x {
-        background: transparent;
-        border: 2px solid #ffffff;
-        color: #ffffff;
-        font-size: 0.8rem;
-        font-weight: bold;
-        padding: 4px 10px;
-        cursor: pointer;
-    }
-
-    #ai-chat {
-        flex: 1;
-        padding: 24px;
-        overflow-y: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        background: #fdfdfd;
-    }
-
-    #ai-chat .user {
-        align-self: flex-end;
-        background: #141414;
-        color: #ffffff;
-        padding: 12px 16px;
-        font-size: 0.95rem;
-        max-width: 85%;
-    }
-
-    #ai-chat .bot {
-        align-self: flex-start;
-        background: #f1f1f1;
-        color: #141414;
-        padding: 12px 16px;
-        font-size: 0.95rem;
-        max-width: 85%;
-        border-left: 3px solid #bb0000;
-    }
-
-    #ai-input-area {
-        display: flex;
-        padding: 20px;
-        background: #eeeeee;
-        border-top: 1px solid #dddddd;
-        gap: 10px;
-    }
-
-    #userInput {
-        flex: 1;
-        background: #ffffff;
-        border: 2px solid #cccccc;
-        padding: 12px;
-        color: #141414;
-        outline: none;
-        font-size: 0.95rem;
-    }
-
-    #ai-input-area button {
-        background: #bb0000;
-        border: none;
-        color: #ffffff;
-        padding: 0 24px;
-        font-weight: 800;
-        cursor: pointer;
-    }
-
-    footer {
-        text-align: center;
-        padding: 40px 20px;
-        color: #666666;
-        border-top: 2px solid #dddddd;
-        font-size: 0.85rem;
-        background: #ffffff;
-    }
-
-    @media (max-width: 768px) {
-        .container { margin-top: 140px; }
-        .hero-header h1 { font-size: 2rem; }
-        .calc-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-        #ai-widget { width: 100%; right: -105%; }
-    }
-</style>
+        /* --- Reset & Global News Theme --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; }
+        body { background: #f8f8f8; color: #141414; overflow-x: hidden; line-height: 1.6; min-height: 100vh; }
+        
+        /* --- News Background Container --- */
+        .news-bg-container { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; background: #ffffff; overflow: hidden; opacity: 0.12; pointer-events: none; }
+        .news-ticker-column { display: flex; flex-direction: column; gap: 15px; position: absolute; width: 100%; animation: verticalScroll 40s linear infinite; }
+        .news-bg-row { display: flex; gap: 40px; white-space: nowrap; font-size: 0.85rem; font-weight: bold; color: #bb0000; text-transform: uppercase; letter-spacing: 0.05em; }
+        @keyframes verticalScroll { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } }
+        
+        .container { max-width: 1200px; margin: auto; padding: 20px; margin-top: 130px; transition: transform 0.4s cubic-bezier(0.05, 0.74, 0.2, 0.99); }
+        body.ai-open .container { transform: scale(0.96) translateX(-50px); }
+
+        /* --- Top Fixed Navbar --- */
+        nav { background-color: #141414; padding: 0 24px; position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; border-bottom: 4px solid #bb0000; display: flex; justify-content: space-between; align-items: center; height: 65px; }
+        .nav-logo { display: flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: -0.03em; font-size: 1.4rem; color: #ffffff; text-decoration: none; }
+        .nav-logo span { background: #bb0000; color: #ffffff; padding: 2px 8px; border-radius: 2px; }
+        .dropdown { position: relative; display: inline-block; }
+        .dropbtn { background-color: transparent; color: #ffffff; border: 2px solid #ffffff; padding: 8px 16px; font-size: 0.85rem; cursor: pointer; font-weight: bold; text-transform: uppercase; transition: all 0.2s ease; }
+        .dropbtn:hover { background-color: #ffffff; color: #141414; }
+        .dropdown-content { display: none; position: absolute; right: 0; background-color: #ffffff; min-width: 260px; box-shadow: 0px 8px 24px rgba(0,0,0,0.15); z-index: 1; border: 1px solid #cccccc; max-height: 80vh; overflow-y: auto; }
+        .dropdown-content a { color: #333333; padding: 12px 16px; text-decoration: none; display: block; font-size: 0.9rem; font-weight: 600; cursor: pointer; border-bottom: 1px solid #eeeeee; }
+        .dropdown-content a:hover { background-color: #bb0000; color: #ffffff; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        /* --- Live Running Market Ticker Bar --- */
+        .ticker-wrap { position: fixed; top: 65px; left: 0; width: 100%; background: #bb0000; color: #ffffff; z-index: 999; overflow: hidden; padding: 10px 0; box-shadow: inset 0 3px 0 rgba(0,0,0,0.1); }
+        .ticker { display: flex; white-space: nowrap; animation: marquee 35s linear infinite; gap: 60px; }
+        .ticker-item { display: inline-block; font-size: 0.8rem; font-weight: bold; letter-spacing: 0.03em; text-transform: uppercase; }
+        @keyframes marquee { 0% { transform: translate3d(100%, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+
+        /* --- Hero Header Layout --- */
+        .hero-header { text-align: left; padding: 40px 0 20px 0; margin: 0 auto; border-bottom: 4px solid #141414; }
+        .hero-header h1 { font-size: 2.8rem; margin-bottom: 10px; font-weight: 900; letter-spacing: -0.02em; color: #141414; line-height: 1.1; }
+        .hero-header p { font-size: 1.1rem; color: #666666; font-weight: 600; }
+
+        /* --- Layout Structures --- */
+        section, .section { padding: 30px 0; border-bottom: 1px solid #dddddd; scroll-margin-top: 140px; }
+        section h2, .section h2 { font-size: 1.6rem; margin-bottom: 20px; color: #141414; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+        section h2::before, .section h2::before { content: ''; display: inline-block; width: 8px; height: 20px; background: #bb0000; }
+        .content-block { background: #ffffff; padding: 30px; border: 1px solid #e2e2e2; border-left: 4px solid #bb0000; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+
+        /* --- Financial Market Hub UI --- */
+        .finance-nav-tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .fin-tab { background: #f1f1f1; border: none; padding: 8px 16px; font-weight: 800; font-size: 0.8rem; cursor: pointer; text-transform: uppercase; color: #333; transition: all 0.2s; }
+        .fin-tab.active, .fin-tab:hover { background: #bb0000; color: #fff; }
+        .fin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
+        .fin-card { background: #fdfdfd; border: 1px solid #ddd; padding: 16px; border-left: 3px solid #141414; }
+        .fin-ticker { font-size: 0.75rem; font-weight: bold; color: #666; text-transform: uppercase; }
+        .fin-title { font-size: 0.95rem; font-weight: 900; color: #141414; margin: 4px 0 10px 0; }
+        .fin-data-row { display: flex; justify-content: space-between; align-items: baseline; }
+        .fin-price { font-size: 1.2rem; font-weight: 900; color: #141414; }
+        .fin-change { font-size: 0.8rem; font-weight: bold; }
+        .fin-change.pos { color: #008800; }
+        .fin-change.neg { color: #bb0000; }
+
+        /* --- Interactive Form & Calculator Layouts --- */
+        .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 20px; }
+        .calc-box select, .custom-select { width: 100%; background-color: #ffffff; border: 2px solid #cccccc; color: #141414; padding: 12px; font-size: 1rem; outline: none; margin-top: 8px; font-weight: bold; }
+        .calc-box select:focus, .custom-select:focus { border-color: #bb0000; }
+        .info-line { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #eeeeee; font-size: 0.9rem; color: #555555; font-weight: 600; }
+        .info-line span:last-child { font-weight: bold; color: #141414; }
+        .action-btn, .submit-btn { background: #bb0000; border: none; color: #ffffff; padding: 14px 24px; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; cursor: pointer; margin-top: 15px; width: 100%; transition: background 0.2s ease; }
+        .action-btn:hover, .submit-btn:hover { background: #990000; }
+        .display-box { display: flex; flex-direction: column; justify-content: center; background: #f4f4f4; padding: 25px; border: 1px solid #dddddd; }
+        .metric { margin-bottom: 1.2rem; }
+        .metric p { font-size: 0.85rem; font-weight: 700; color: #666666; text-transform: uppercase; margin-bottom: 4px; }
+        .val-highlight { font-size: 2.2rem; font-weight: 900; color: #bb0000; }
+
+        /* --- System Logs --- */
+        .system-log-box { background: #141414; border: 1px solid #333333; padding: 15px; font-family: monospace; font-size: 0.8rem; color: #00ff88; height: 120px; overflow-y: auto; margin-top: 15px; line-height: 1.5; }
+
+        /* --- Splash Screen --- */
+        #splash-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #141414; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 999999; transition: opacity 0.6s ease-out, visibility 0.6s; }
+        .splash-container { text-align: center; max-width: 450px; padding: 20px; }
+        .splash-title { font-size: 2rem; font-weight: 900; text-transform: uppercase; margin-bottom: 5px; color: #ffffff; }
+        .splash-subtitle { font-size: 0.85rem; color: #bb0000; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 35px; font-weight: 800; }
+        .loader-ring { position: relative; width: 60px; height: 60px; margin: 0 auto 35px auto; }
+        .loader-ring div { box-sizing: border-box; display: block; position: absolute; width: 48px; height: 48px; margin: 6px; border: 3px solid #bb0000; border-radius: 50%; animation: rotateRing 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite; border-color: #bb0000 transparent transparent transparent; }
+        @keyframes rotateRing { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .status-text { font-size: 0.8rem; color: #cccccc; min-height: 24px; font-weight: bold; }
+
+        /* --- AI Widget Sidebar --- */
+        #ai-sidebar-trigger { position: fixed; top: 50%; right: 0; transform: translateY(-50%); background: #bb0000; color: #ffffff; border: none; padding: 20px 10px; font-weight: 800; font-size: 0.8rem; text-transform: uppercase; writing-mode: vertical-rl; cursor: pointer; border-radius: 4px 0 0 4px; z-index: 10001; box-shadow: -2px 0 10px rgba(0,0,0,0.2); }
+        #ai-widget { position: fixed; top: 0; right: -55%; width: 45%; height: 100vh; background: #ffffff; border-left: 4px solid #bb0000; box-shadow: -15px 0 40px rgba(0, 0, 0, 0.2); display: flex; flex-direction: column; z-index: 10000; transition: right 0.4s cubic-bezier(0.05, 0.74, 0.2, 0.99); }
+        #ai-widget.open { right: 0; }
+        #ai-header { background: #141414; padding: 20px; font-weight: 900; font-size: 1rem; color: #ffffff; border-bottom: 4px solid #bb0000; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase; }
+        .ai-close-x { background: transparent; border: 2px solid #ffffff; color: #ffffff; font-size: 0.8rem; font-weight: bold; padding: 4px 10px; cursor: pointer; }
+        #ai-chat { flex: 1; padding: 24px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; background: #fdfdfd; }
+        #ai-chat .user { align-self: flex-end; background: #141414; color: #ffffff; padding: 12px 16px; font-size: 0.95rem; max-width: 85%; }
+        #ai-chat .bot { align-self: flex-start; background: #f1f1f1; color: #141414; padding: 12px 16px; font-size: 0.95rem; max-width: 85%; border-left: 3px solid #bb0000; }
+        #ai-input-area { display: flex; padding: 20px; background: #eeeeee; border-top: 1px solid #dddddd; gap: 10px; }
+        #userInput { flex: 1; background: #ffffff; border: 2px solid #cccccc; padding: 12px; color: #141414; outline: none; font-size: 0.95rem; }
+        #ai-input-area button { background: #bb0000; border: none; color: #ffffff; padding: 0 24px; font-weight: 800; cursor: pointer; }
+
+        footer { text-align: center; padding: 40px 20px; color: #666666; border-top: 2px solid #dddddd; font-size: 0.85rem; background: #ffffff; }
+        
+        @media (max-width: 768px) {
+            .container { margin-top: 140px; }
+            .hero-header h1 { font-size: 2rem; }
+            .calc-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            #ai-widget { width: 100%; right: -105%; }
+        }
+    </style>
 </head>
 <body>
 
@@ -658,7 +131,7 @@
             <div class="loader-ring">
                 <div></div><div></div><div></div><div></div>
             </div>
-            <div id="status-update" class="status-text">Connecting Financial Feeds...</div>
+            <div id="status-update" class="status-text">Connecting Alpha Vantage & News Feeds...</div>
         </div>
     </div>
 
@@ -671,8 +144,8 @@
             <button class="dropbtn">Menu Vault</button>
             <div class="dropdown-content">
                 <a href="#overview">Company Overview</a>
-                <a href="#google-finance-section">Google Finance Hub</a>
-                <a href="#news-feed-section">Live Market News</a>
+                <a href="#google-finance-section">Live Market Hub</a>
+                <a href="#news-feed-section">Live Market News & Sentiment</a>
                 <a href="#calculator">Funding Calculator</a>
             </div>
         </div>
@@ -681,7 +154,7 @@
     <!-- Ticker Bar -->
     <div class="ticker-wrap">
         <div class="ticker">
-            <div class="ticker-item">GOOGLE FINANCE STREAM: ACTIVE & SECURE</div>
+            <div class="ticker-item">ALPHA VANTAGE STREAM: ACTIVE & SECURE</div>
             <div class="ticker-item">STOCKS • FOREX • CRYPTO • INVESTMENT PORTFOLIO</div>
         </div>
     </div>
@@ -695,7 +168,7 @@
             <button class="ai-close-x" onclick="toggleAISidebar()">X</button>
         </div>
         <div id="ai-chat">
-            <div class="bot">Financial terminal connected. Ask about stocks, forex pairs, crypto prices, or investment terms!</div>
+            <div class="bot">Financial terminal connected with Alpha Vantage API. Ask about stocks, forex, crypto, or news sentiment!</div>
         </div>
         <div id="ai-input-area">
             <input type="text" id="userInput" placeholder="Ask about markets...">
@@ -707,12 +180,12 @@
     <div class="container" id="overview">
         <header class="hero-header">
             <h1>Lizkemi Capital Firm</h1>
-            <p>Live Financial Markets Terminal: Stocks, Forex, Crypto & Investments</p>
+            <p>Live Financial Markets Terminal: Stocks, Forex, Crypto & Investments (Powered by Alpha Vantage)</p>
         </header>
 
-        <!-- EMBEDDED GOOGLE FINANCE MARKET TERMINAL -->
+        <!-- LIVE ALPHA VANTAGE FINANCIAL MARKET TERMINAL -->
         <div class="section" id="google-finance-section">
-            <h2>Google Finance Market Data Engine</h2>
+            <h2>Alpha Vantage Live Market Data Engine</h2>
             <div class="content-block">
                 <div class="finance-nav-tabs">
                     <button class="fin-tab active" onclick="switchFinanceTab(event, 'stocks')">Stocks & E-Commerce</button>
@@ -728,24 +201,24 @@
                             <div class="fin-ticker">NASDAQ: AMZN</div>
                             <div class="fin-title">Amazon.com Inc</div>
                             <div class="fin-data-row">
-                                <span class="fin-price">$186.50</span>
-                                <span class="fin-change pos">+2.14%</span>
+                                <span class="fin-price" id="price-AMZN">Loading...</span>
+                                <span class="fin-change" id="change-AMZN">--</span>
                             </div>
                         </div>
                         <div class="fin-card">
                             <div class="fin-ticker">NYSE: SHOP</div>
                             <div class="fin-title">Shopify Inc</div>
                             <div class="fin-data-row">
-                                <span class="fin-price">$78.20</span>
-                                <span class="fin-change pos">+4.05%</span>
+                                <span class="fin-price" id="price-SHOP">Loading...</span>
+                                <span class="fin-change" id="change-SHOP">--</span>
                             </div>
                         </div>
                         <div class="fin-card">
                             <div class="fin-ticker">NASDAQ: MSFT</div>
                             <div class="fin-title">Microsoft Corp</div>
                             <div class="fin-data-row">
-                                <span class="fin-price">$430.15</span>
-                                <span class="fin-change neg">-0.42%</span>
+                                <span class="fin-price" id="price-MSFT">Loading...</span>
+                                <span class="fin-change" id="change-MSFT">--</span>
                             </div>
                         </div>
                     </div>
@@ -755,23 +228,23 @@
                 <div id="tab-forex" class="fin-tab-pane" style="display:none;">
                     <div class="fin-grid">
                         <div class="fin-card">
-                            <div class="fin-ticker">FX: EURUSD</div>
+                            <div class="fin-ticker">FX: EUR/USD</div>
                             <div class="fin-title">Euro / US Dollar</div>
                             <div class="fin-data-row">
-                                <span class="fin-price">1.0894</span>
-                                <span class="fin-change pos">+0.15%</span>
+                                <span class="fin-price" id="price-EURUSD">Loading...</span>
+                                <span class="fin-change" id="change-EURUSD">--</span>
                             </div>
                         </div>
                         <div class="fin-card">
-                            <div class="fin-ticker">FX: GBPUSD</div>
+                            <div class="fin-ticker">FX: GBP/USD</div>
                             <div class="fin-title">British Pound / USD</div>
                             <div class="fin-data-row">
-                                <span class="fin-price">1.2782</span>
-                                <span class="fin-change neg">-0.08%</span>
+                                <span class="fin-price" id="price-GBPUSD">Loading...</span>
+                                <span class="fin-change" id="change-GBPUSD">--</span>
                             </div>
                         </div>
                         <div class="fin-card">
-                            <div class="fin-ticker">FX: USDSLL</div>
+                            <div class="fin-ticker">FX: USD/SLL</div>
                             <div class="fin-title">US Dollar / Leone</div>
                             <div class="fin-data-row">
                                 <span class="fin-price">22.650</span>
@@ -788,16 +261,16 @@
                             <div class="fin-ticker">CRYPTO: BTC</div>
                             <div class="fin-title">Bitcoin</div>
                             <div class="fin-data-row">
-                                <span class="fin-price">$67,420.00</span>
-                                <span class="fin-change pos">+3.45%</span>
+                                <span class="fin-price" id="price-BTC">Loading...</span>
+                                <span class="fin-change" id="change-BTC">--</span>
                             </div>
                         </div>
                         <div class="fin-card">
                             <div class="fin-ticker">CRYPTO: ETH</div>
                             <div class="fin-title">Ethereum</div>
                             <div class="fin-data-row">
-                                <span class="fin-price">$3,510.50</span>
-                                <span class="fin-change pos">+1.82%</span>
+                                <span class="fin-price" id="price-ETH">Loading...</span>
+                                <span class="fin-change" id="change-ETH">--</span>
                             </div>
                         </div>
                         <div class="fin-card">
@@ -840,16 +313,15 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
-        <!-- LIVE GOOGLE NEWS FEED SECTION -->
+        <!-- LIVE NEWS & MARKET SENTIMENT FEED SECTION -->
         <div class="section" id="news-feed-section">
-            <h2>Live Financial & Market News</h2>
+            <h2>Live Financial News & Market Sentiment</h2>
             <div class="content-block">
-                <div id="google-news-container" style="display: flex; flex-direction: column; gap: 15px;">
-                    <p style="font-size: 0.9rem; color: #666;">Fetching latest market updates...</p>
+                <div id="alpha-news-container" style="display: flex; flex-direction: column; gap: 15px;">
+                    <p style="font-size: 0.9rem; color: #666;">Fetching latest financial news and sentiment feeds...</p>
                 </div>
             </div>
         </div>
@@ -887,7 +359,7 @@
             <h2>Live System Activity Logs</h2>
             <div class="content-block">
                 <div id="systemLog" class="system-log-box">
-                    [GOOGLE FINANCE INIT] Terminal live feed established successfully.<br>
+                    [TERMINAL INIT] Live feed initialized successfully.<br>
                 </div>
             </div>
         </div>
@@ -897,120 +369,229 @@
         <p>&copy; 2026 Lizkemi Capital Firm. All Rights Reserved.</p>
     </footer>
 
-<!-- JavaScript Engine -->
-<script>
-function toggleAISidebar() {
-    const aiWidget = document.getElementById('ai-widget');
-    aiWidget.classList.toggle('open');
-    document.body.classList.toggle('ai-open');
-}
+    <!-- Consolidated JavaScript Engine -->
+    <script>
+        const ALPHA_VANTAGE_API_KEY = 'L3L2ULNNTNQYF9RX'; // Replace with your actual API key
 
-function switchFinanceTab(evt, tabId) {
-    const panes = document.querySelectorAll('.fin-tab-pane');
-    panes.forEach(p => p.style.display = 'none');
-
-    const tabs = document.querySelectorAll('.fin-tab');
-    tabs.forEach(t => t.classList.remove('active'));
-
-    const target = document.getElementById('tab-' + tabId);
-    if(target) target.style.display = 'block';
-    if(evt && evt.currentTarget) evt.currentTarget.classList.add('active');
-}
-
-function runCalculationEngine() {
-    const selectElem = document.getElementById('loanAmount');
-    if(!selectElem) return;
-    const val = parseInt(selectElem.value);
-    const interest = Math.round(val * 0.2);
-    const total = val + interest;
-    
-    document.getElementById('interestDisplay').innerText = interest.toLocaleString();
-    document.getElementById('totalDisplay').innerText = total.toLocaleString();
-    document.getElementById('matureValuationDisplay').innerText = total.toLocaleString();
-}
-
-function downloadContractDocument() {
-    const totalText = document.getElementById('totalDisplay').innerText;
-    const fileContent = `LIZKEMI CAPITAL FIRM - FINANCIAL MANIFEST\nTotal Settlement Bounds: ${totalText}\nGenerated: ${new Date().toLocaleString()}`;
-    const blob = new Blob([fileContent], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "LizKemi_Finance_Manifest.txt";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-}
-
-function sendMessage(){
-    let input = document.getElementById("userInput");
-    let chat = document.getElementById("ai-chat");
-    if(!input || !chat) return;
-    let text = input.value.trim();
-    if(text === "") return;
-
-    chat.innerHTML += `<div class="user">${text}</div>`;
-    chat.scrollTop = chat.scrollHeight;
-
-    let reply = "LizKemi Terminal: You can track live prices across our Stock, Forex, Crypto, and Investment sections above.";
-    let q = text.toLowerCase();
-    if(q.includes("stock") || q.includes("amazon") || q.includes("shopify")) {
-        reply = "Our stock and e-commerce tracker includes major equities like Amazon (AMZN) and Shopify (SHOP) with live percentage shifts.";
-    } else if(q.includes("crypto") || q.includes("bitcoin") || q.includes("ethereum")) {
-        reply = "Cryptocurrency assets like Bitcoin (BTC) and Ethereum (ETH) are tracking real-time global market trends inside the crypto module.";
-    }
-
-    setTimeout(() => {
-        chat.innerHTML += `<div class="bot">${reply}</div>`;
-        chat.scrollTop = chat.scrollHeight;
-    }, 400);
-    input.value = "";
-}
-
-function loadGoogleNewsFeed() {
-    const rssUrl = encodeURIComponent('https://news.google.com/rss/search?q=finance+stocks+crypto+economy&hl=en-US&gl=US&ceid=US:en');
-    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`;
-
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            const container = document.getElementById('google-news-container');
-            if (!container) return;
-            
-            if (data && data.items) {
-                container.innerHTML = '';
-                data.items.slice(0, 4).forEach(item => {
-                    const pubDate = new Date(item.pubDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                    const newsCard = document.createElement('div');
-                    newsCard.style.cssText = "padding: 12px; background: #fdfdfd; border-left: 3px solid #bb0000; border: 1px solid #ddd;";
-                    newsCard.innerHTML = `
-                        <div style="font-size: 0.75rem; font-weight: bold; color: #666; margin-bottom: 4px;">GOOGLE NEWS • ${pubDate}</div>
-                        <a href="${item.link}" target="_blank" style="font-size: 0.95rem; font-weight: 900; color: #141414; text-decoration: none; display: block; margin-bottom: 6px;">${item.title}</a>
-                        <span style="font-size: 0.8rem; color: #444;">Source: ${item.author || 'Google News RSS'}</span>
-                    `;
-                    container.appendChild(newsCard);
-                });
+        function logSystemMessage(msg) {
+            const logBox = document.getElementById('systemLog');
+            if(logBox) {
+                const timestamp = new Date().toLocaleTimeString();
+                logBox.innerHTML += `[${timestamp}] ${msg}<br>`;
+                logBox.scrollTop = logBox.scrollHeight;
             }
-        })
-        .catch(error => {
-            console.error("Error loading news feed:", error);
-            const container = document.getElementById('google-news-container');
-            if(container) container.innerHTML = '<p style="font-size: 0.85rem; color: #bb0000;">Unable to load live news feed at this moment.</p>';
-        });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    setTimeout(() => {
-        const splash = document.getElementById("splash-screen");
-        if(splash) {
-            splash.style.opacity = '0';
-            setTimeout(() => splash.style.display = "none", 600);
         }
-        runCalculationEngine();
-    }, 2000);
-    loadGoogleNewsFeed();
-});
-</script>
+
+        function toggleAISidebar() {
+            const aiWidget = document.getElementById('ai-widget');
+            aiWidget.classList.toggle('open');
+            document.body.classList.toggle('ai-open');
+        }
+
+        function switchFinanceTab(evt, tabId) {
+            const panes = document.querySelectorAll('.fin-tab-pane');
+            panes.forEach(p => p.style.display = 'none');
+            const tabs = document.querySelectorAll('.fin-tab');
+            tabs.forEach(t => t.classList.remove('active'));
+            const target = document.getElementById('tab-' + tabId);
+            if(target) target.style.display = 'block';
+            if(evt && evt.currentTarget) evt.currentTarget.classList.add('active');
+        }
+
+        function runCalculationEngine() {
+            const selectElem = document.getElementById('loanAmount');
+            if(!selectElem) return;
+            const val = parseInt(selectElem.value);
+            const interest = Math.round(val * 0.2);
+            const total = val + interest;
+            document.getElementById('interestDisplay').innerText = interest.toLocaleString();
+            document.getElementById('totalDisplay').innerText = total.toLocaleString();
+            document.getElementById('matureValuationDisplay').innerText = total.toLocaleString();
+        }
+
+        function downloadContractDocument() {
+            const totalText = document.getElementById('totalDisplay').innerText;
+            const fileContent = `LIZKEMI CAPITAL FIRM - FINANCIAL MANIFEST\nTotal Settlement Bounds: ${totalText}\nGenerated: ${new Date().toLocaleString()}`;
+            const blob = new Blob([fileContent], { type: "text/plain;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "LizKemi_Finance_Manifest.txt";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+
+        function sendMessage() {
+            let input = document.getElementById("userInput");
+            let chat = document.getElementById("ai-chat");
+            if(!input || !chat) return;
+            let text = input.value.trim();
+            if(text === "") return;
+            chat.innerHTML += `<div class="user">${text}</div>`;
+            chat.scrollTop = chat.scrollHeight;
+
+            let reply = "LizKemi Terminal: You can track live prices across our Stock, Forex, Crypto, and Investment sections.";
+            let q = text.toLowerCase();
+            if(q.includes("stock") || q.includes("amazon") || q.includes("shopify")) {
+                reply = "Our stock and e-commerce tracker pulls real-time equities data for major names like Amazon (AMZN) and Shopify (SHOP).";
+            } else if(q.includes("crypto") || q.includes("bitcoin") || q.includes("ethereum")) {
+                reply = "Cryptocurrency assets like Bitcoin (BTC) and Ethereum (ETH) sync directly with live market feeds inside the crypto module.";
+            }
+
+            setTimeout(() => {
+                chat.innerHTML += `<div class="bot">${reply}</div>`;
+                chat.scrollTop = chat.scrollHeight;
+            }, 400);
+            input.value = "";
+        }
+
+        async function fetchStockQuote(symbol) {
+            if(ALPHA_VANTAGE_API_KEY === 'YOUR_API_KEY') {
+                logSystemMessage(`API key not set. Skipping fetch for ${symbol}.`);
+                return;
+            }
+            const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${ALPHA_VANTAGE_API_KEY}`;
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                const quote = data['Global Quote'];
+                if(quote && quote['05. price']) {
+                    const price = parseFloat(quote['05. price']).toFixed(2);
+                    const changePct = quote['10. change percent'] || '+0.00%';
+                    document.getElementById(`price-${symbol}`).innerText = `$${price}`;
+                    const changeElem = document.getElementById(`change-${symbol}`);
+                    if(changeElem) {
+                        changeElem.innerText = changePct;
+                        changeElem.className = changePct.includes('-') ? 'fin-change neg' : 'fin-change pos';
+                    }
+                    logSystemMessage(`Fetched live data for ${symbol}: $${price}`);
+                }
+            } catch (error) {
+                logSystemMessage(`Error fetching stock ${symbol}: ${error.message}`);
+            }
+        }
+
+        async function fetchForexRate(fromCurr, toCurr, elementId) {
+            if(ALPHA_VANTAGE_API_KEY === 'YOUR_API_KEY') return;
+            const url = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=${fromCurr}&to_currency=${toCurr}&apikey=${ALPHA_VANTAGE_API_KEY}`;
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                const rateObj = data['Realtime Currency Exchange Rate'];
+                if(rateObj && rateObj['5. Exchange Rate']) {
+                    const rate = parseFloat(rateObj['5. Exchange Rate']).toFixed(4);
+                    document.getElementById(elementId).innerText = rate;
+                    logSystemMessage(`Fetched Forex rate ${fromCurr}/${toCurr}: ${rate}`);
+                }
+            } catch (error) {
+                logSystemMessage(`Error fetching forex ${fromCurr}/${toCurr}: ${error.message}`);
+            }
+        }
+
+        async function fetchCryptoRate(symbol, market, elementId) {
+            if(ALPHA_VANTAGE_API_KEY === 'YOUR_API_KEY') return;
+            const url = `https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=${symbol}&market=${market}&apikey=${ALPHA_VANTAGE_API_KEY}`;
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                const timeSeries = data['Time Series (Digital Currency Daily)'];
+                if(timeSeries) {
+                    const latestDate = Object.keys(timeSeries)[0];
+                    const dailyData = timeSeries[latestDate];
+                    const price = parseFloat(dailyData[`4a. close (${market})`]).toLocaleString(undefined, {minimumFractionDigits: 2});
+                    document.getElementById(elementId).innerText = `$${price}`;
+                    logSystemMessage(`Fetched Crypto rate for ${symbol}: $${price}`);
+                }
+            } catch (error) {
+                logSystemMessage(`Error fetching crypto ${symbol}: ${error.message}`);
+            }
+        }
+
+        async function loadNewsFeed() {
+            const container = document.getElementById('alpha-news-container');
+            if(!container) return;
+
+            if(ALPHA_VANTAGE_API_KEY === 'YOUR_API_KEY') {
+                // Fallback to Google News RSS via RSS2JSON if Alpha Vantage key is placeholder
+                const rssUrl = encodeURIComponent('https://news.google.com/rss/search?q=finance+stocks+crypto+economy&hl=en-US&gl=US&ceid=US:en');
+                const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`;
+                
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data && data.items) {
+                            container.innerHTML = '';
+                            data.items.slice(0, 4).forEach(item => {
+                                const pubDate = new Date(item.pubDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                                const newsCard = document.createElement('div');
+                                newsCard.style.cssText = "padding: 12px; background: #fdfdfd; border-left: 3px solid #bb0000; border: 1px solid #ddd;";
+                                newsCard.innerHTML = `
+                                    <div style="font-size: 0.75rem; font-weight: bold; color: #666; margin-bottom: 4px;">MARKET NEWS • ${pubDate}</div>
+                                    <a href="${item.link}" target="_blank" style="font-size: 0.95rem; font-weight: 900; color: #141414; text-decoration: none; display: block; margin-bottom: 6px;">${item.title}</a>
+                                    <span style="font-size: 0.8rem; color: #444;">Source: ${item.author || 'RSS Feed'}</span>
+                                `;
+                                container.appendChild(newsCard);
+                            });
+                            logSystemMessage("Market news feed loaded successfully via RSS.");
+                        }
+                    })
+                    .catch(error => {
+                        container.innerHTML = '<p style="font-size: 0.85rem; color: #bb0000;">Unable to load live news feed at this moment.</p>';
+                    });
+                return;
+            }
+
+            // Alpha Vantage News Sentiment Feed
+            const url = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&topics=technology,finance&limit=4&apikey=${ALPHA_VANTAGE_API_KEY}`;
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                if(data && data.feed) {
+                    container.innerHTML = '';
+                    data.feed.forEach(item => {
+                        const title = item.title;
+                        const source = item.source;
+                        const urlLink = item.url;
+                        const timeStr = item.time_published ? item.time_published.substring(0, 8) : '';
+                        const newsCard = document.createElement('div');
+                        newsCard.style.cssText = "padding: 12px; background: #fdfdfd; border-left: 3px solid #bb0000; border: 1px solid #ddd;";
+                        newsCard.innerHTML = `
+                            <div style="font-size: 0.75rem; font-weight: bold; color: #666; margin-bottom: 4px;">ALPHA VANTAGE NEWS • ${timeStr}</div>
+                            <a href="${urlLink}" target="_blank" style="font-size: 0.95rem; font-weight: 900; color: #141414; text-decoration: none; display: block; margin-bottom: 6px;">${title}</a>
+                            <span style="font-size: 0.8rem; color: #444;">Source: ${source}</span>
+                        `;
+                        container.appendChild(newsCard);
+                    });
+                    logSystemMessage("Alpha Vantage live news & sentiment feed loaded successfully.");
+                }
+            } catch (error) {
+                logSystemMessage(`Error loading news feed: ${error.message}`);
+                container.innerHTML = '<p style="font-size: 0.85rem; color: #bb0000;">Unable to load live news feed at this moment.</p>';
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            setTimeout(() => {
+                const splash = document.getElementById("splash-screen");
+                if(splash) {
+                    splash.style.opacity = '0';
+                    setTimeout(() => splash.style.display = "none", 600);
+                }
+                runCalculationEngine();
+            }, 2000);
+
+            // Initialize Market Data Feeds
+            fetchStockQuote('AMZN');
+            fetchStockQuote('SHOP');
+            fetchStockQuote('MSFT');
+            fetchForexRate('EUR', 'USD', 'price-EURUSD');
+            fetchForexRate('GBP', 'USD', 'price-GBPUSD');
+            fetchCryptoRate('BTC', 'USD', 'price-BTC');
+            fetchCryptoRate('ETH', 'USD', 'price-ETH');
+            loadNewsFeed();
+        });
+    </script>
 </body>
 </html>
