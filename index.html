@@ -901,8 +901,8 @@ function switchFinanceTab(evt, tabId) {
     const tabs = document.querySelectorAll('.fin-tab');
     tabs.forEach(t => t.classList.remove('active'));
 
-    const target = document.getElementById('tab-+' tabId); // corrected selection below
-    document.getElementById('tab-' + tabId).style.display = 'block';
+    const target = document.getElementById('tab-' + tabId);
+    if(target) target.style.display = 'block';
     if(evt && evt.currentTarget) evt.currentTarget.classList.add('active');
 }
 
