@@ -109,20 +109,21 @@
             #ai-widget { width: 100%; right: -105%; }
         }
     </style>
-<!-- Universal Language Translator Widget -->
-<div id="google_translate_element"></div>
 </head>
 <body>
-<script type="text/javascript">
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-      pageLanguage: 'en',
-      includedLanguages: 'es,fr,de,zh-CN,ar,pt,ru,ja,hi,it', // Customize or remove to include all languages
-      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-    }, 'google_translate_element');
-  }
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Universal Language Translator Widget -->
+    <div id="google_translate_element" style="position:fixed; top:12px; right:150px; z-index:1001;"></div>
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          includedLanguages: 'es,fr,de,zh-CN,ar,pt,ru,ja,hi,it',
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+      }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <!-- Background Ticker Layer -->
     <div class="news-bg-container">
@@ -183,7 +184,7 @@
             <div class="bot">Financial terminal connected with Alpha Vantage API. Ask about stocks, forex, crypto, or news sentiment!</div>
         </div>
         <div id="ai-input-area">
-            <input type="text" id="userInput" placeholder="Ask about markets...">
+            <input type="text" id="userInput" placeholder="Ask about markets..." onkeypress="if(event.key === 'Enter') sendMessage()">
             <button onclick="sendMessage()">Send</button>
         </div>
     </div>
@@ -383,7 +384,7 @@
 
     <!-- Consolidated JavaScript Engine -->
     <script>
-        const ALPHA_VANTAGE_API_KEY = 'L3L2ULNNTNQYF9RX'; // Replace with your actual API key
+        const ALPHA_VANTAGE_API_KEY = 'L3L2ULNNTNQYF9RX';
 
         function logSystemMessage(msg) {
             const logBox = document.getElementById('systemLog');
@@ -526,7 +527,6 @@
             if(!container) return;
 
             if(ALPHA_VANTAGE_API_KEY === 'YOUR_API_KEY') {
-                // Fallback to Google News RSS via RSS2JSON if Alpha Vantage key is placeholder
                 const rssUrl = encodeURIComponent('https://news.google.com/rss/search?q=finance+stocks+crypto+economy&hl=en-US&gl=US&ceid=US:en');
                 const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}`;
                 
@@ -555,7 +555,6 @@
                 return;
             }
 
-            // Alpha Vantage News Sentiment Feed
             const url = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&topics=technology,finance&limit=4&apikey=${ALPHA_VANTAGE_API_KEY}`;
             try {
                 const response = await fetch(url);
@@ -594,7 +593,6 @@
                 runCalculationEngine();
             }, 2000);
 
-            // Initialize Market Data Feeds
             fetchStockQuote('AMZN');
             fetchStockQuote('SHOP');
             fetchStockQuote('MSFT');
