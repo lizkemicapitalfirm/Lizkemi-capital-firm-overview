@@ -111,19 +111,25 @@
     </style>
 </head>
 <body>
+ <!-- Universal Language Translator Widget -->
+<div id="google_translate_element" style="position:fixed; top:12px; right:150px; z-index:1001; display:inline-block;"></div>
 
-    <!-- Universal Language Translator Widget -->
-    <div id="google_translate_element" style="position:fixed; top:12px; right:150px; z-index:1001;"></div>
-    <script type="text/javascript">
-      function googleTranslateElementInit() {
-        new google.translate.TranslateElement({
-          pageLanguage: 'en',
-          includedLanguages: 'es,fr,de,zh-CN,ar,pt,ru,ja,hi,it',
-          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-        }, 'google_translate_element');
-      }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    try {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'es,fr,de,zh-CN,ar,pt,ru,ja,hi,it',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+      logSystemMessage("Google Translate initialized successfully.");
+    } catch (e) {
+      logSystemMessage("Google Translate initialization error: " + e.message);
+    }
+  }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" onerror="logSystemMessage('Failed to load Google Translate script.');"></script>
 
     <!-- Background Ticker Layer -->
     <div class="news-bg-container">
