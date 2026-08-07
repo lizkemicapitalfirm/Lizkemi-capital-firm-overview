@@ -3,177 +3,609 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lizkemi Capital Firm - Global Financial News & Instruction Panel</title>
+    <title>Lizkemi Capital Firm - Global Financial Markets, News & Intelligence Hub</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #0f172a;
-            --accent-color: #2563eb;
-            --text-color: #334155;
-            --bg-light: #f8fafc;
-            --border-color: #e2e8f0;
+            --bg-primary: #070a14;
+            --bg-surface: #0f1629;
+            --bg-card: #162038;
+            --bg-card-hover: #1c2a4a;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-primary: #2563eb;
+            --accent-glow: rgba(37, 99, 235, 0.4);
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --border-color: #1e293b;
+            --border-glow: #3b82f6;
         }
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: var(--bg-light);
-            color: var(--text-color);
-            line-height: 1.6;
         }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Top Bar & Ticker */
         header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1.5rem 2rem;
+            background-color: var(--bg-surface);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 4px solid var(--accent-color);
         }
-        header h1 {
-            margin: 0;
-            font-size: 1.5rem;
-            letter-spacing: 0.05em;
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
+
+        .logo-icon {
+            font-size: 1.8rem;
+            color: var(--accent-primary);
+            text-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            background: linear-gradient(135deg, #ffffff 0%, #93c5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
         nav a {
-            color: white;
+            color: var(--text-muted);
             text-decoration: none;
-            margin-left: 1.5rem;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
         }
-        nav a:hover {
-            color: var(--accent-color);
+
+        nav a:hover, nav a.active {
+            color: var(--text-main);
+            background-color: var(--bg-card);
+            box-shadow: 0 0 10px rgba(37, 99, 235, 0.2);
         }
+
+        /* Live Market Ticker */
+        .market-ticker {
+            background-color: #0b101f;
+            border-bottom: 1px solid var(--border-color);
+            padding: 0.6rem 0;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .ticker-wrapper {
+            display: flex;
+            gap: 3rem;
+            animation: ticker 30s linear infinite;
+            width: max-content;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .ticker-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .ticker-item span {
+            font-weight: 700;
+        }
+
+        .ticker-item.up { color: var(--accent-green); }
+        .ticker-item.down { color: var(--accent-red); }
+
+        /* Main Grid Layout */
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 2rem auto;
-            padding: 0 1rem;
-        }
-        .breaking-news {
-            background: #fff;
-            border-left: 4px solid var(--accent-color);
-            padding: 1rem 1.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        .grid {
+            padding: 0 2rem;
             display: grid;
-            grid-template-columns: 2fr 1fr;
+            grid-template-columns: 1fr 340px;
             gap: 2rem;
         }
-        @media (max-width: 768px) {
-            .grid {
+
+        @media (max-width: 1100px) {
+            .container {
                 grid-template-columns: 1fr;
             }
         }
-        .main-content, .sidebar {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+
+        .main-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
         }
-        h2 {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 0.5rem;
-            margin-top: 0;
-        }
-        .article-card {
+
+        /* Section Headings */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: 0.03em;
+        }
+
+        .section-title i {
+            color: var(--accent-primary);
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.8rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+        }
+
+        .card:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Breaking News Banner */
+        .breaking-banner {
+            background: linear-gradient(135deg, #1e1b4b 0%, #172554 100%);
+            border: 1px solid #3730a3;
+            border-left: 5px solid var(--accent-primary);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .breaking-badge {
+            background-color: var(--accent-primary);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        .breaking-text {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #e2e8f0;
+        }
+
+        /* News Articles Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .news-card {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: background-color 0.2s;
+        }
+
+        .news-card:hover {
+            background-color: var(--bg-card-hover);
+        }
+
+        .news-category {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .news-headline {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .news-snippet {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .news-meta {
+            font-size: 0.75rem;
+            color: #64748b;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 0.75rem;
+        }
+
+        /* Analytics / Charts Section Placeholder */
+        .analytics-preview {
+            background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-card) 100%);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .analytics-preview i {
+            font-size: 3rem;
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Sidebar Elements */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .instruction-panel {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .instruction-item {
+            padding: 1rem 0;
             border-bottom: 1px solid var(--border-color);
         }
-        .article-card:last-child {
+
+        .instruction-item:last-child {
             border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
         }
-        .article-card h3 {
-            margin: 0 0 0.5rem 0;
-            color: var(--accent-color);
+
+        .instruction-step {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
         }
-        .ad-zone {
-            background: #e2e8f0;
-            border: 2px dashed #94a3b8;
-            padding: 1.5rem;
-            text-align: center;
-            margin: 1.5rem 0;
+
+        .instruction-title {
+            font-size: 0.95rem;
             font-weight: 600;
-            color: #64748b;
+            color: var(--text-main);
+            margin-bottom: 0.25rem;
         }
-        footer {
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
+
+        .instruction-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Ad Slots */
+        .ad-container {
+            background-color: var(--bg-surface);
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
             padding: 2rem;
-            margin-top: 3rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .ad-container i {
+            font-size: 1.5rem;
+            color: #475569;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-surface);
+            border-top: 1px solid var(--border-color);
+            margin-top: 4rem;
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-primary);
         }
     </style>
 </head>
 <body>
 
+    <!-- Header & Navigation -->
     <header>
-        <h1>LIZKEMI CAPITAL FIRM</h1>
-        <nav>
-            <a href="#news">Global News</a>
-            <a href="#markets">Markets</a>
-            <a href="#instruction-panel">Instruction Panel</a>
-            <a href="#contact">Contact</a>
-        </nav>
+        <div class="header-container">
+            <div class="logo-area">
+                <i class="fas fa-chart-line logo-icon"></i>
+                <div class="logo-text">LIZKEMI CAPITAL FIRM</div>
+            </div>
+            <nav>
+                <a href="#news" class="active">Global News</a>
+                <a href="#markets">Markets</a>
+                <a href="#economy">Economy</a>
+                <a href="#instruction-panel">Instruction Panel</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
     </header>
 
-    <div class="container">
-        <!-- Breaking News Ticker Section -->
-        <div class="breaking-news">
-            <strong>Breaking Global News:</strong> International markets react to shifting central bank policies and technological updates in digital asset frameworks.
-        </div>
-
-        <div class="grid">
-            <!-- Main News & Content Feed -->
-            <main class="main-content">
-                <section id="news">
-                    <h2>International Financial News</h2>
-                    
-                    <div class="article-card">
-                        <h3>Global Equity Markets Surge Amid Tech Sector Expansion</h3>
-                        <p>International indexes saw a robust uptick today as multinational tech conglomerates report higher-than-expected quarterly revenues, steering investor sentiment towards growth assets.</p>
-                    </div>
-
-                    <div class="article-card">
-                        <h3>Central Banks Evaluate Cross-Border Digital Currency Frameworks</h3>
-                        <p>Financial leaders from major economies convene to discuss standardization metrics for virtual capital mobility and secure transaction ledgers.</p>
-                    </div>
-
-                    <!-- Advertisement Zone Integration -->
-                    <div class="ad-zone">
-                        [Adsterra Advertisement Zone 1 - Active Display Unit]
-                    </div>
-
-                    <div class="article-card">
-                        <h3>Commodities Update: Energy and Precious Metals Overview</h3>
-                        <p>A comprehensive analysis of global supply chain adjustments affecting crude oil futures and gold valuation benchmarks across international trading desks.</p>
-                    </div>
-                </section>
-            </main>
-
-            <!-- Sidebar / Instruction Panel -->
-            <aside class="sidebar">
-                <section id="instruction-panel">
-                    <h2>Instruction Panel</h2>
-                    <p>Welcome to the official student and member instruction module. Follow the core operational guidelines below:</p>
-                    <ul>
-                        <li><strong>Module 1:</strong> Global Market Fundamentals</li>
-                        <li><strong>Module 2:</strong> Risk Management Protocols</li>
-                        <li><strong>Module 3:</strong> Asset Allocation Strategies</li>
-                        <li><strong>Module 4:</strong> Advanced Analytics & Tracking</li>
-                    </ul>
-                </section>
-            </aside>
+    <!-- Real-Time Market Ticker Bar -->
+    <div class="market-ticker">
+        <div class="ticker-wrapper">
+            <div class="ticker-item">S&P 500: 5,632.15 <span class="up"><i class="fas fa-arrow-up"></i> +1.24%</span></div>
+            <div class="ticker-item">NASDAQ: 18,201.40 <span class="up"><i class="fas fa-arrow-up"></i> +1.82%</span></div>
+            <div class="ticker-item">DOW JONES: 39,150.25 <span class="down"><i class="fas fa-arrow-down"></i> -0.31%</span></div>
+            <div class="ticker-item">FTSE 100: 8,240.10 <span class="up"><i class="fas fa-arrow-up"></i> +0.45%</span></div>
+            <div class="ticker-item">NIKKEI 225: 39,600.80 <span class="up"><i class="fas fa-arrow-up"></i> +0.92%</span></div>
+            <div class="ticker-item">GOLD: $2,450.50 <span class="up"><i class="fas fa-arrow-up"></i> +0.55%</span></div>
+            <div class="ticker-item">CRUDE OIL: $78.20 <span class="down"><i class="fas fa-arrow-down"></i> -1.10%</span></div>
+            <div class="ticker-item">BTC/USD: $65,120.00 <span class="up"><i class="fas fa-arrow-up"></i> +2.15%</span></div>
+            <!-- Duplicate for seamless infinite loop effect -->
+            <div class="ticker-item">S&P 500: 5,632.15 <span class="up"><i class="fas fa-arrow-up"></i> +1.24%</span></div>
+            <div class="ticker-item">NASDAQ: 18,201.40 <span class="up"><i class="fas fa-arrow-up"></i> +1.82%</span></div>
+            <div class="ticker-item">DOW JONES: 39,150.25 <span class="down"><i class="fas fa-arrow-down"></i> -0.31%</span></div>
         </div>
     </div>
 
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Main Content Feed -->
+        <div class="main-feed">
+            
+            <!-- Breaking News Ticker Banner -->
+            <div class="breaking-banner">
+                <div class="breaking-badge">Live Wire</div>
+                <div class="breaking-text">International markets adjust posture following unexpected central bank liquidity updates and cross-border tech capital expansions.</div>
+            </div>
+
+            <!-- Global Financial News Section -->
+            <div class="card">
+                <div class="section-header">
+                    <div class="section-title">
+                        <i class="fas fa-globe-americas"></i> International Financial News
+                    </div>
+                </div>
+
+                <div class="news-grid">
+                    <div class="news-card">
+                        <div>
+                            <div class="news-category">Equities & Markets</div>
+                            <div class="news-headline">Global Equity Markets Surge Amid Tech Sector Expansion</div>
+                            <div class="news-snippet">International indexes saw a robust uptick today as multinational tech conglomerates report higher-than-expected quarterly revenues, steering investor sentiment towards growth assets.</div>
+                        </div>
+                        <div class="news-meta">
+                            <span><i class="far fa-clock"></i> 2 hours ago</span>
+                            <span>Global Markets Desk</span>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <div>
+                            <div class="news-category">Central Banking</div>
+                            <div class="news-headline">Central Banks Evaluate Cross-Border Digital Currency Frameworks</div>
+                            <div class="news-snippet">Financial leaders from major economies convene to discuss standardization metrics for virtual capital mobility and secure transaction ledgers.</div>
+                        </div>
+                        <div class="news-meta">
+                            <span><i class="far fa-clock"></i> 4 hours ago</span>
+                            <span>Macro Economics</span>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <div>
+                            <div class="news-category">Commodities</div>
+                            <div class="news-headline">Commodities Update: Energy and Precious Metals Overview</div>
+                            <div class="news-snippet">A comprehensive analysis of global supply chain adjustments affecting crude oil futures and gold valuation benchmarks across international trading desks.</div>
+                        </div>
+                        <div class="news-meta">
+                            <span><i class="far fa-clock"></i> 6 hours ago</span>
+                            <span>Commodities Intelligence</span>
+                        </div>
+                    </div>
+
+                    <div class="news-card">
+                        <div>
+                            <div class="news-category">Corporate Finance</div>
+                            <div class="news-headline">Multinational Capital Allocation Shifts Toward Emerging Tech Hubs</div>
+                            <div class="news-snippet">Venture capital inflows and digital firm structures redirect focus to highly scalable international virtual operational frameworks.</div>
+                        </div>
+                        <div class="news-meta">
+                            <span><i class="far fa-clock"></i> 8 hours ago</span>
+                            <span>Corporate Strategy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advanced Analytics Section -->
+            <div class="card">
+                <div class="section-header">
+                    <div class="section-title">
+                        <i class="fas fa-chart-pie"></i> Real-Time Terminal Analytics & Sentiment Hub
+                    </div>
+                </div>
+                <div class="analytics-preview">
+                    <i class="fas fa-server"></i>
+                    <h3 style="color: var(--text-main); margin-bottom: 0.5rem; font-size: 1.1rem;">Lizkemi Capital Secure Analytics Engine</h3>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; max-width: 600px;">Aggregating multi-source international data feeds, predictive liquidity metrics, and member tracking parameters.</p>
+                </div>
+            </div>
+
+            <!-- AdSense Placement Slot -->
+            <div class="ad-container">
+                <i class="fas fa-ad"></i>
+                <span>Google AdSense High-Performance Display Placement</span>
+            </div>
+
+        </div>
+
+        <!-- Sidebar / Instruction Panel Hub -->
+        <aside class="sidebar">
+            
+            <div class="instruction-panel">
+                <div class="section-header" style="margin-bottom: 1rem;">
+                    <div class="section-title" style="font-size: 1.1rem;">
+                        <i class="fas fa-sliders-h"></i> Instruction Panel
+                    </div>
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.25rem;">Official operational directives and member learning pathways:</p>
+                
+                <div class="instruction-item">
+                    <div class="instruction-step">Module 01</div>
+                    <div class="instruction-title">Global Market Fundamentals</div>
+                    <div class="instruction-desc">Decoding structural macroeconomic trends and multi-market indices.</div>
+                </div>
+
+                <div class="instruction-item">
+                    <div class="instruction-step">Module 02</div>
+                    <div class="instruction-title">Risk Management Protocols</div>
+                    <div class="instruction-desc">Executing stringent capital safeguarding and asset distribution matrices.</div>
+                </div>
+
+                <div class="instruction-item">
+                    <div class="instruction-step">Module 03</div>
+                    <div class="instruction-title">Asset Allocation Strategies</div>
+                    <div class="instruction-desc">Optimizing yield generation across global digital infrastructure classes.</div>
+                </div>
+
+                <div class="instruction-item">
+                    <div class="instruction-step">Module 04</div>
+                    <div class="instruction-title">Advanced Analytics & Tracking</div>
+                    <div class="instruction-desc">Leveraging tracking dimensions and multi-variable reporting tools.</div>
+                </div>
+            </div>
+
+            <!-- Secondary AdSense Slot -->
+            <div class="ad-container" style="padding: 1.5rem;">
+                <i class="fas fa-ad"></i>
+                <span style="font-size: 0.8rem;">AdSense Sidebar Banner Unit</span>
+            </div>
+
+        </aside>
+
+    </div>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 LIZKEMI CAPITAL FIRM. All rights reserved. Operating globally on the internet.</p>
+        <div class="footer-content">
+            <div class="logo-text" style="font-size: 1.1rem;">LIZKEMI CAPITAL FIRM</div>
+            <p>&copy; 2026 LIZKEMI CAPITAL FIRM. All rights reserved. Operating globally as an advanced virtual intelligence & financial news network.</p>
+            <div class="footer-links">
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+                <a href="#compliance">Regulatory Compliance</a>
+                <a href="#contact">Contact Support</a>
+            </div>
+        </div>
     </footer>
 
 </body>
