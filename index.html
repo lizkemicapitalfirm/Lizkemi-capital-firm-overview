@@ -19,9 +19,21 @@
         body.ai-open .container { transform: scale(0.96) translateX(-50px); }
 
         /* --- Top Fixed Navbar --- */
-        nav { background-color: #141414; padding: 0 24px; position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; border-bottom: 4px solid #bb0000; display: flex; justify-content: space-between; align-items: center; height: 65px; }
-        .nav-logo { display: flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: -0.03em; font-size: 1.4rem; color: #ffffff; text-decoration: none; }
+        nav { background-color: #141414; padding: 0 24px; position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; border-bottom: 4px solid #bb0000; display: flex; justify-content: space-between; align-items: center; height: 65px; gap: 15px; }
+        .nav-logo { display: flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: -0.03em; font-size: 1.4rem; color: #ffffff; text-decoration: none; flex-shrink: 0; }
         .nav-logo span { background: #bb0000; color: #ffffff; padding: 2px 8px; border-radius: 2px; }
+        
+        .nav-right-actions { display: flex; align-items: center; gap: 12px; }
+
+        /* --- Custom styling for Google Translate dropdown inside nav --- */
+        #google_translate_element select { background-color: #141414; color: #ffffff; border: 2px solid #ffffff; padding: 6px 10px; font-size: 0.75rem; cursor: pointer; font-weight: bold; text-transform: uppercase; outline: none; }
+        #google_translate_element select:hover { background-color: #ffffff; color: #141414; }
+        .goog-te-gadget { font-size: 0px !important; color: transparent !important; }
+        .goog-te-gadget span { display: none; }
+        .goog-logo-link { display: none !important; }
+        .goog-te-banner-frame { display: none !important; }
+        body { top: 0px !important; }
+
         .dropdown { position: relative; display: inline-block; }
         .dropbtn { background-color: transparent; color: #ffffff; border: 2px solid #ffffff; padding: 8px 16px; font-size: 0.85rem; cursor: pointer; font-weight: bold; text-transform: uppercase; transition: all 0.2s ease; }
         .dropbtn:hover { background-color: #ffffff; color: #141414; }
@@ -107,11 +119,13 @@
             .hero-header h1 { font-size: 2rem; }
             .calc-grid { grid-template-columns: 1fr; gap: 1.5rem; }
             #ai-widget { width: 100%; right: -105%; }
+            nav { padding: 0 12px; }
         }
     </style>
 </head>
 <body>
- <!-- Background Ticker Layer -->
+
+    <!-- Background Ticker Layer -->
     <div class="news-bg-container">
         <div class="news-ticker-column">
             <div class="news-bg-row">
@@ -121,26 +135,7 @@
             </div>
         </div>
     </div>
- <!-- Universal Language Translator Widget -->
-<div id="google_translate_element" style="position:fixed; top:12px; right:150px; z-index:1001; display:inline-block;"></div>
 
-<script type="text/javascript">
-  function googleTranslateElementInit() {
-    try {
-      new google.translate.TranslateElement({
-        pageLanguage: 'en',
-        includedLanguages: 'es,fr,de,zh-CN,ar,pt,ru,ja,hi,it',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-        autoDisplay: false
-      }, 'google_translate_element');
-      logSystemMessage("Google Translate initialized successfully.");
-    } catch (e) {
-      logSystemMessage("Google Translate initialization error: " + e.message);
-    }
-  }
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" onerror="logSystemMessage('Failed to load Google Translate script.');"></script>
-    
     <!-- Splash Screen -->
     <div id="splash-screen">
         <div class="splash-container">
@@ -153,21 +148,42 @@
         </div>
     </div>
 
-    <!-- Navigation Bar -->
+    <!-- Navigation Bar with Integrated Translator -->
     <nav id="topNav">
         <a href="https://lizkemicapitalfirm.github.io/" class="nav-logo">
-            <span>FINANCE</span> Lizkemi Capital
+            <span>FINANCE</span> Lizkemi
         </a>
-        <div class="dropdown">
-            <button class="dropbtn">Menu Vault</button>
-            <div class="dropdown-content">
-                <a href="#overview">Company Overview</a>
-                <a href="#google-finance-section">Live Market Hub</a>
-                <a href="#news-feed-section">Live Market News & Sentiment</a>
-                <a href="#calculator">Funding Calculator</a>
+        <div class="nav-right-actions">
+            <!-- Universal Language Translator Widget -->
+            <div id="google_translate_element"></div>
+            
+            <div class="dropdown">
+                <button class="dropbtn">Menu Vault</button>
+                <div class="dropdown-content">
+                    <a href="#overview">Company Overview</a>
+                    <a href="#google-finance-section">Live Market Hub</a>
+                    <a href="#news-feed-section">Live Market News & Sentiment</a>
+                    <a href="#calculator">Funding Calculator</a>
+                </div>
             </div>
         </div>
     </nav>
+
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        try {
+          new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'es,fr,de,zh-CN,ar,pt,ru,ja,hi,it',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+          }, 'google_translate_element');
+        } catch (e) {
+          console.log("Translation init error:", e);
+        }
+      }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <!-- Ticker Bar -->
     <div class="ticker-wrap">
