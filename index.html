@@ -109,8 +109,20 @@
             #ai-widget { width: 100%; right: -105%; }
         }
     </style>
+<!-- Universal Language Translator Widget -->
+<div id="google_translate_element"></div>
 </head>
 <body>
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'es,fr,de,zh-CN,ar,pt,ru,ja,hi,it', // Customize or remove to include all languages
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+  }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <!-- Background Ticker Layer -->
     <div class="news-bg-container">
